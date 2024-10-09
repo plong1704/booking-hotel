@@ -1,0 +1,78 @@
+<div class="header-container box-shadow-bh">
+  <div class="logo-wrapper" routerLink="/home">
+    <div class="logo__inner">
+      <img src="assets/logo/logo.png" alt="" />
+    </div>
+  </div>
+  <div class="d-flex-bh flex-row-reverse-bh align-items-center-bh">
+    <ng-container *ngIf="user$ | async as user; else noneLogin">
+      <div class="login-success">
+        <div class="avatar" id="avatar">
+          <div class="image__wrapper">
+            <img [src]="user.avatarUrl" alt="">
+            <div class="overlay"></div>
+          </div>
+          <div class="overlay-panel box-shadow-bh" *ngIf="isShowUserOverlayPannel">
+            <section>
+              <div class="section-item about-user">
+                <div class="avatar">
+                  <div class="image__wrapper">
+                    <img [src]="user.avatarUrl" alt="">
+                  </div>
+                </div>
+                <div>
+                  <p style="margin: unset;">{{user.fullName}}</p>
+                  <span style="margin: unset; font-size: 1.4rem;">{{user.email}}</span>
+                </div>
+              </div>
+            </section>
+            <section *ngFor="let group of userOverlayPanel.navigateGroups">
+              <div class="section-item" *ngFor="let option of group" (click)="option.action? option.action() : ''">
+                <a [routerLink]="[option.path]">
+                  <div class="option">
+                    <div class="icon">
+                      <i [class]="option.icon"></i>
+                    </div>
+                    <div class="text">{{option.label}}</div> 
+                    <div class="icon"></div>
+                  </div>
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngTemplateOutlet="cart"></ng-container>
+    </ng-container>
+
+    <ng-template #noneLogin>
+      <div class="hide-on-mobile d-flex-bh flex-row-reverse-bh align-items-center-bh">
+          <ng-container *ngTemplateOutlet="cart"></ng-container>
+          <div class="wrap-fit">
+            <button
+              class="primary-bg--hover"
+              mat-button
+              color="primary"
+              (click)="openLoginFormDialog()"
+            >
+              Đăng nhập
+            </button>
+          </div>
+          <div class="wrap-fit">
+            <button mat-stroked-button color="primary" routerLink="/auth/register">
+              Tạo tài khoản
+            </button>
+          </div>
+          <div class="lease-wrapper mr-r-10">
+            <button mat-stroked-button color="accent">Đăng ký cho thuê</button>
+          </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #cart>
+  <a class="cart-wrapper" routerLink="/cart">
+    <app-cart-svg></app-cart-svg>
+  </a>
+</ng-template>

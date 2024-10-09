@@ -1,0 +1,67 @@
+.ls-image__container{
+}
+.ls-image__container .ls-image__footer{
+    padding: 30px;
+    padding-right: 22px;
+    background-color: rgb(42,42,58);
+    color: #fff
+}
+.ls-image__container .ls-image__footer .ls-image__list{
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: 1242px;
+    overflow: scroll;
+    position: relative;
+}
+.ls-image__container .ls-image__footer .ls-image__item{
+    width: 93px;
+    height: 60px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-right: 8px;
+    position: relative;
+}
+
+.ls-image__container .ls-image__main .ls-image__list .control{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255);
+    color: black;
+    font-size: 2.5rem;
+    opacity: .5;
+    top: 50%;
+    border-radius: 50%;
+}
+.ls-image__container .ls-image__main .ls-image__list .control:hover{
+    opacity: 1;
+}
+.ls-image__container .ls-image__main .ls-image__list .control.pre{
+    left: 0;
+    transform: translate(20px, -50%);
+}
+.ls-image__container .ls-image__main .ls-image__list .control.next{
+    right: 0;
+    transform: translate(-20px, -50%);
+}
+.ls-image__container .ls-image__main .ls-image__list .ls-image__item{
+    display: none;
+    width: 100%;
+    padding-bottom: 66.6666%;
+    position: relative;
+}
+.ls-image__container .ls-image__main .ls-image__list .ls-image__item.show{
+    display: block;
+}
+.ls-image__container .ls-image__main .ls-image__list .ls-image__item img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

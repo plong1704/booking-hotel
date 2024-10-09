@@ -1,0 +1,74 @@
+<form class="content-pricing" [formGroup]="rfPricing" >
+  <div class="card-header">
+    <div class="card-header-left">
+      <p class="content-header-one">Thiết lập mức giá.</p>
+      <p>Chọn giá phòng mỗi đêm theo số lượng khách và các điều kiện khác.
+      </p>
+    </div>
+    <div class="card-header-right">
+      <img src="https://img.agoda.net/images/header/ec-pricing@2x.png" alt="">
+    </div>
+  </div>
+  <div class="panel-recommendation"><strong>Lưu ý!</strong>
+    <p>Quý đối tác có thể định giá và khả năng cung cấp phòng bằng cách chọn người quản lý Kênh hoặc bằng cách cung cấp
+      giá hằng đêm.</p>
+
+  </div>
+
+  <div class="panel-price">
+    <p>Giảm Giá theo % cho khách hàng vào dịp lễ</p>
+    <span>Vui lòng nhập % giảm giá của quý đối tác cho chỗ nghỉ này. Nếu quý đối tác đang dùng người quản lý kênh thì chúng tôi sẽ đồng bộ các giá này giữa các nền tảng một khi đã khớp giá.Tìm hiểu về giá, tiền hoa hồng, và thu nhập.</span>
+    <div class="panel-price-form">
+      <p>Lượng người tối đa có thể ngủ ở chỗ bạn là 4</p>
+      <div class="panel-price-form-input">
+        <p>Giảm giá </p>
+        <div class="panel-price-form-input-price">
+          <input type="number"  formControlName="discountPercent">
+          <span>%</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="panel-payment">
+    <p>Tên loại giảm giá</p>
+    <span>Vui lòng chọn hình thức giảm giá. Các thông tin bổ sung sẽ được yêu cầu thêm sau khi đăng lên Agoda..</span>
+    <div class="panel-payment-form">
+
+      <div class="payment-item" *ngFor="let item of _paymentList">
+        <input type="radio"
+
+               value="{{item.title}}"
+ formControlName="name"
+>
+        <div class="payment-name">
+          <p>
+            {{item.title}}
+          </p>
+          <span>
+          {{item.desc}}
+            </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</form>
+<div class="action-pricing">
+  <a>LƯU VÀ THOÁT</a>
+  <div class="action-btn">
+    <button class="btn-pricing-return">
+      <a [routerLink]="['/lease/create/amenities']">TRƯỚC</a>
+    </button>
+
+    <button class="btn-pricing-submit">
+      <a
+        [routerLink]="['/lease/create/photos']"
+        (click)="submitForm()"
+
+
+      >TIẾP THEO</a>
+    </button>
+  </div>
+</div>

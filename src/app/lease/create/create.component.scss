@@ -1,0 +1,45 @@
+
+.container-create{
+  width: 100%;
+  background: #FDFDFD;
+
+}
+mat-sidenav-container{
+  width: 1170px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+  min-height: 500px;
+  background: #FDFDFD;
+}
+mat-sidenav{
+  width: 200px;
+  background: #FFFFFF;
+
+}
+
+
+
+mat-list-item a{
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+.icon-no-active{
+  display: block;
+  margin-right: 15px;
+  color: #1174a6;
+
+
+}
+.active{
+  display: flex;
+  align-items: center;
+  color: #1174a6;
+  font-weight: 500;
+  & .icon-no-active{
+
+    color: #32a923;
+  }
+}
+

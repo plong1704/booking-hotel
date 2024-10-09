@@ -1,0 +1,143 @@
+.filter-bar{
+    padding: 11px 0;
+    background-color: var(--filter-bar-color);
+    position: sticky;
+    top: var(--header-height);
+    z-index: 1000;
+}
+
+
+// form
+.filter-form .line-form {
+    height: 48px;
+    margin: 0
+}
+.filter-form .line-form .line-form__fit-item .date-picker__wrapper{
+    padding: 0
+}
+.search-button__wrapper{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1000;
+}
+.search-button__wrapper button{
+    display: block;
+    height: 100%;
+    width: 100%;
+    white-space: auto;
+}
+.search-button__wrapper button:disabled{
+    background-color: var(--primary-color);
+    color: #fff;
+    cursor: not-allowed;
+}
+
+#line-form__search{
+    z-index: 1001;
+}
+#line-form__search #autocomplete-search{
+    position: absolute;
+    left: -1px;
+    right: 0;
+    width: calc(100% + 2px);
+    top: calc(100% + 20px);
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+#line-form__search #autocomplete-search li{
+    padding: 20px;
+}
+#line-form__search #autocomplete-search li:hover{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+#line-form__search #autocomplete-search li:hover span{
+    color: #fff;
+}
+#line-form__search #autocomplete-search li:last-child{
+    margin-bottom: unset;
+}
+#line-form__search #autocomplete-search .icon{
+    margin-right: 10px;
+}
+#line-form__search #autocomplete-search i{
+    font-size: 1.8rem;
+}
+#line-form__search #autocomplete-search li p{
+    font-size: 1.4rem;
+    margin: 0;
+    line-height: 1.4rem;
+}
+#line-form__search #autocomplete-search li span{
+    font-size: 1.2rem;
+    color: #a9a9a9;
+}
+/* Mobile */
+@media (max-width: 740px) {
+    /* CSS cho màn hình nhỏ hơn hoặc bằng 767px (mobile) */
+    .filter-form{
+        padding: 0 11px;
+    }
+    .filter-bar{
+        position: relative;
+        top: 0
+    }
+    .filter-form .col{
+        margin-bottom: 8px
+    }
+    .filter-form .col:nth-child(4){
+        margin-bottom: unset
+    }
+    .filter-form .col:nth-child(4) button{
+        margin: 0 auto;
+        width: 75%
+    }
+  }
+  
+  /* Tablet */
+  @media (min-width: 740px) and (max-width: 1023px) {
+    /* CSS cho màn hình từ 768px đến 1023px (tablet) */
+    .filter-bar{
+        position: sticky;
+        top: 0;
+    }
+    .filter-form{
+        
+    }
+    .filter-form .col:nth-child(1){
+        order: 1;
+        margin-bottom: 8px
+    }
+    .filter-form .col:nth-child(2){
+        order: 3
+    }
+    .filter-form .col:nth-child(3){
+        order: 2
+    }
+    .filter-form .col:nth-child(4){
+        order: 4
+    }
+    .filter-form .col:nth-child(4) button{
+        width: 100%;
+    }
+    // .info-group{
+    //     display: flex;
+    // }
+  }
+  
+  /* PC */
+  @media (min-width: 1024px) {
+    /* CSS cho màn hình lớn hơn hoặc bằng 1024px (PC) */
+    .info-group{
+        height: 100%;
+        margin: auto 0;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .info-group p, .info-group span{
+        font-size: 1.4rem;
+    }
+  }

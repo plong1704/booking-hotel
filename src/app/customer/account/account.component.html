@@ -1,0 +1,43 @@
+<div class="account">
+  <div class="grid wide">
+    <div class="row">
+      <div class="col l-4 m-4 c-4">
+        <div class="sidebar">
+          <mat-accordion>
+            <ng-container
+              *ngFor="let n of sidebarNavigates"
+            >
+              <a [routerLink]="[n.path]">
+                <mat-expansion-panel
+                  [expanded]="n.isExpanded"
+                  [hideToggle]="!n.scrollIntoViewList.length"
+                  [disabled]="!n.scrollIntoViewList.length"
+                  class="mr-b-5"
+                  style="margin-bottom: 5px"
+                >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      {{ n.label }}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <a
+                    class="scroll-item"
+                    *ngFor="let c of n.scrollIntoViewList"
+                    (click)="$event.stopPropagation()"
+                    [routerLink]="[n.path + '/' + c.path]"
+                    routerLinkActive="router-link--active"
+                  >
+                    {{ c.label }}
+                  </a>
+                </mat-expansion-panel>
+              </a>
+            </ng-container>
+          </mat-accordion>
+        </div>
+      </div>
+      <div class="col l-8 m-8 c-8">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

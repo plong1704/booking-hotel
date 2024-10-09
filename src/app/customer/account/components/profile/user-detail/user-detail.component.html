@@ -1,0 +1,151 @@
+<h2 style="color: var(--primary-color)">Thông tin người dùng</h2>
+<div class="grid">
+  <form [formGroup]="userFG" *ngIf="user$ | async as user">
+    <ng-container *ngFor="let item of a">
+      <div class="row">
+        <div class="col l-12">
+          <h5>{{ item.label }}</h5>
+        </div>
+        <div class="col l-12">
+          <ng-container *ngIf="!item.isEdit">
+            <div
+              class="d-flex-bh align-items-center-bh justify-content-between-bh"
+            >
+              <div class="content mr-b-10">
+                <ng-container *ngIf="user[item.fieldName]">
+                  {{ user[item.fieldName] }}
+                </ng-container>
+                <ng-container
+                  *ngIf="!user[item.fieldName]"
+                >
+                  <span *ngIf="item.fieldName !== 'password'">
+                    {{ item.label }} chưa được cập nhật
+                  </span>
+                  <span *ngIf="item.fieldName === 'password'">
+                    ********************
+                  </span>
+                </ng-container>
+              </div>
+              <div class="action__wrapper">
+                <button mat-button color="primary" (click)="onClickEdit(item)" *ngIf="item.canEdit">
+                  <span *ngIf="!user[item.fieldName] && item.fieldName !== 'password'">
+                    Thêm
+                  </span>
+                  <span
+                    *ngIf="
+                      (user[item.fieldName] || item.fieldName === 'password')                    "
+                  >
+                    Chỉnh sửa
+                  </span>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+          <div
+            class="row d-flex-bh justify-content-between-bh align-items-center-bh"
+            *ngIf="item.isEdit"
+          >
+            <div class="col l-8">
+              <ng-container *ngIf="item.abstractControl === 'control'">
+                <!-- input -->
+                <ng-container *ngIf="item.type === 'input'">
+                  <div class="line-form" style="flex: 1">
+                    <div class="d-flex-bh align-items-center-bh w-fit">
+                      <mat-form-field class="w-fit" appearance="fill">
+                        <mat-label>{{ item.label }}</mat-label>
+                        <input matInput [formControlName]="item.fieldName" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </ng-container>
+                <!-- radio -->
+                <ng-container *ngIf="item.type === 'radio'">
+                  <div class="line-form" style="flex: 1">
+                    <mat-radio-group
+                      aria-label="Select an option"
+                      formControlName="gender"
+                    >
+                      <mat-radio-button
+                        color="primary"
+                        class="mr-r-10"
+                        [value]="r.value"
+                        *ngFor="let r of item.options"
+                        >{{ r.label }}</mat-radio-button
+                      >
+                    </mat-radio-group>
+                  </div>
+                </ng-container>
+                <!-- date -->
+                <ng-container *ngIf="item.type === 'date'">
+                  <div class="line-form" style="flex: 1">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Choose a date</mat-label>
+                      <input
+                        matInput
+                        [matDatepicker]="picker"
+                        formControlName="dob"
+                      />
+                      <mat-hint>MM/DD/YYYY</mat-hint>
+                      <mat-datepicker-toggle
+                        matSuffix
+                        [for]="picker"
+                      ></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngIf="item.abstractControl === 'group'">
+                <div [formGroupName]="item.fieldName" class="w-fit">
+                  <div class="line-form" style="flex: 1">
+                    <div
+                      class="d-flex-bh align-items-center-bh w-fit"
+                      *ngFor="let g of item.group"
+                    >
+                      <mat-form-field class="w-fit" appearance="fill">
+                        <mat-label>{{ g.label }}</mat-label>
+                        <input matInput [formControlName]="g.fieldName" />
+                        <mat-error
+                          *ngIf="
+                            userFG
+                              .get(item.fieldName)!
+                              .get(g.fieldName)!
+                              .hasError('required')
+                          "
+                        >
+                          Mật khẩu <strong> không được để trống</strong>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <mat-error
+                      *ngIf="userFG.get(item.fieldName)!.hasError('passwordMismatch')"
+                    >
+                      Mật khẩu <strong> không trùng khớp</strong>
+                    </mat-error>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="col l-4">
+              <div class="d-flex-bh align-items-center-bh justify-content-end-bh">
+                <div>
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="onClickUpdate(item)"
+                  >
+                    Cập nhật
+                  </button>
+                </div>
+                <div class="mr-l-10">
+                  <button mat-button (click)="cancelEdit(item)">Huỷ</button>
+                </div>
+              </div>
+            </div>
+            <!-- edit button -->
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </form>
+</div>

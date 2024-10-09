@@ -1,0 +1,219 @@
+<div class="filter-bar">
+  <div class="grid wide">
+    <form [formGroup]="hotelFormGroup" class="filter-form form-default">
+      <div class="row m-gutters">
+        <div class="col l-4 m-6 c-12">
+          <div
+             id="line-form__search"
+            #locationLineForm
+            class="line-form"
+            (click)="updateOverlayState(locationLineForm)"
+          >
+            <div class="icon__wrapper">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="d-flex-bh align-items-center-bh w-fit">
+              <mat-form-field class="w-fit" appearance="fill">
+                <mat-label>Nhập địa danh hoặc vị trí</mat-label>
+                <input #searchInput
+                  formControlName="search"
+                  matInput
+                  placeholder="Ex.Thành phố Hồ Chí Minh"
+                  (keyup)="onKeyupSearch(searchInput.value)"
+                />
+              </mat-form-field>
+            </div>
+            <ng-container
+              *ngIf="autocompleteSearchs$ | async as autocompleteSearchs"
+            >
+              <div
+                #autocompleteSearch
+                id="autocomplete-search"
+                *ngIf="
+                  autocompleteSearchs.length > 0 && isEnableAutocompleteSearch
+                "
+              >
+                <ul>
+                  <li
+                    (click)="
+                      filterProductService.selectAutocomplete(
+                        autocompleteSeasrch
+                      )
+                    "
+                    class="d-flex-bh"
+                    *ngFor="let autocompleteSeasrch of autocompleteSearchs"
+                  >
+                    <div class="icon">
+                      <ng-container
+                        *ngIf="autocompleteSeasrch.type === 'hotel'"
+                      >
+                        <i class="fa-solid fa-bed"></i>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="
+                          autocompleteSeasrch.type === 'province' ||
+                          autocompleteSeasrch.type === 'district'
+                        "
+                      >
+                        <i class="fa-sharp fa-solid fa-location-dot"></i>
+                      </ng-container>
+                    </div>
+                    <div>
+                      <p>
+                        {{ autocompleteSeasrch.name }}
+                      </p>
+                      <span>
+                        {{ autocompleteSeasrch.category }}
+                      </span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col l-3 m-9 c-12">
+          <div class="line-form">
+            <div
+              #startDateLineForm
+              class="line-form__fit-item"
+              (click)="updateOverlayState(startDateLineForm)"
+            >
+              <div class="date-picker__wrapper right-line">
+                <mat-form-field class="w-fit mat-date-picker" appearance="fill">
+                  <mat-datepicker #startPicker></mat-datepicker>
+                  <mat-label>Chọn ngày đi</mat-label>
+                  <input
+                    [min]="filterProductService.minStartDate"
+                    matInput
+                    [matDatepicker]="startPicker"
+                    formControlName="startDate"
+                  />
+                  <mat-datepicker-toggle matSuffix [for]="startPicker"  (click)="updateOverlayState(startDateLineForm)">
+                    <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+                  </mat-datepicker-toggle>
+                </mat-form-field>
+              </div>
+            </div>
+            <div
+              class="line-form__fit-item"
+              #endDateLineForm
+              (click)="updateOverlayState(endDateLineForm)"
+            >
+              <div class="date-picker__wrapper">
+                <mat-form-field class="w-fit" appearance="fill">
+                  <mat-datepicker #endPicker></mat-datepicker>
+                  <mat-label>Chọn ngày về</mat-label>
+                  <input
+                    [min]="filterProductService.minEndDate"
+                    matInput
+                    [matDatepicker]="endPicker"
+                    formControlName="endDate"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="endPicker"
+                    (click)="updateOverlayState(endDateLineForm)"
+                  ></mat-datepicker-toggle>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l-3 m-6 c-12">
+          <div id="occupancy-box" formGroupName="occupancy">
+            <div
+              #occupancyLineForm
+              class="line-form"
+              (click)="updateOverlayState(occupancyLineForm)"
+            >
+              <div class="icon__wrapper">
+                <i class="fa-solid fa-user-group"></i>
+              </div>
+              <div class="occupancy-selection">
+                <div class="info-group">
+                  <p>
+                    {{ filterProductService.adultControl.value }} người lớn
+                    <span *ngIf="filterProductService.childrenControl.value > 0"
+                      >,
+                      {{ filterProductService.childrenControl.value }}
+                      trẻ em</span
+                    >
+                  </p>
+                  <span
+                    >{{ filterProductService.roomControl.value }} phòng</span
+                  >
+                </div>
+                <div
+                  class="arrow-down__wrapper"
+                  [class.toggle]="isEnableOccupancy"
+                >
+                  <i class="fa-solid fa-angle-down"></i>
+                </div>
+              </div>
+            </div>
+            <div
+              #occupancyPopup
+              class="occupancy__popup"
+              *ngIf="isEnableOccupancy"
+            >
+              <div class="occupancy-option__list">
+                <div class="overlay"></div>
+                <div
+                  class="occupancy-option__item"
+                  *ngFor="
+                    let i of filterProductService.occupancyOptions;
+                    index as idx
+                  "
+                >
+                  <div class="info-group">
+                    <div class="label">{{ i.label }}</div>
+                    <span class="sub-label">{{ i.subLabel }}</span>
+                  </div>
+                  <div class="control-group">
+                    <div
+                      class="control-button"
+                      (click)="filterProductService.updateOccupancy(i, '-')"
+                    >
+                      <i class="fa-solid fa-minus"></i>
+                    </div>
+                    <h3>
+                      {{
+                        filterProductService.occupancyGroup.get(i.name)!.value
+                      }}
+                    </h3>
+                    <div
+                      class="control-button"
+                      (click)="filterProductService.updateOccupancy(i, '+')"
+                    >
+                      <i class="fa-solid fa-plus"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l-2 m-3 c-12">
+          <div class="search-button__wrapper">
+            <button
+              [disabled]="hotelFormGroup.invalid"
+              mat-raised-button
+              color="primary"
+              (click)="onSubmitHotelFormGroup()"
+            >
+              Tìm kiếm
+            </button>
+        </div>
+    </div>
+</div>
+</form>
+</div>
+</div>
+<ng-container *ngIf="overlayState$ | async as overlayState">
+    <div 
+      class="overlay-bh"
+      (click)="onClickOverlay()"
+      *ngIf="overlayState.isShow"
+    ></div>
+</ng-container>

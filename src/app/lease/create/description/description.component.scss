@@ -1,0 +1,232 @@
+.content-description{
+  padding-top: 20px;
+  padding-left: 50px;
+}
+.card-header {
+  width: 100%;
+  display: flex;
+}
+
+.card-header-left {
+  width: 66.66667%;
+
+}
+.panel-payment{
+  margin-top: 20px;
+  margin-bottom: 32px;
+
+  & p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  & span {
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #2a2a2e;
+  }
+
+  &-form {
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 15px;
+
+
+  }
+}
+
+.payment-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+
+  & input {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    margin-top: 0;
+    margin-left: 0;
+
+  }
+}
+.card-header-right {
+  width: calc(100% - 66.6667%);
+  padding-right: 15px;
+  padding-left: 15px;
+
+  & img {
+    width: 100%;
+  }
+}
+.content-header-one {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.1;
+
+}
+.panel-description{
+    margin-bottom: 32px;
+  & p{
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    font-weight: 500;
+  }
+  & span{
+
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #2a2a2e;
+
+    & a{
+      color: #1174a6;
+
+      &:hover{
+        color: #0a4461;
+        text-decoration: underline;
+      }
+    }
+
+  }
+  &-form{
+    margin-top: 16px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid  #dddfe2;
+    border-radius: 5px;
+    align-items: flex-end;
+    & input{
+      width: 100%;
+      height: 42px;
+      padding: 10px 15px;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #bec2c9;
+      border-radius: 0;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+      &:focus{
+        border-color: #66afe9;
+        outline: 0;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+      }
+    }
+    & textarea{
+      height: auto;
+      width: 100%;
+      padding: 10px 15px;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #bec2c9;
+      border-radius: 0;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      resize: none;
+      &:focus{
+        border-color: #66afe9;
+        outline: 0;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+      }
+    }
+    & small{
+      width: fit-content;
+      margin-top: 5px;
+    }
+  }
+  &-star{
+  display: flex;
+    & a{
+      color: #ccc;
+      text-decoration: none;
+      letter-spacing: 7px;
+      font-stretch: normal;
+      line-height: normal;
+      font-size: 24px;
+      transition: color .2s ease-out;
+      &:hover{
+        cursor: pointer;
+        text-decoration: none;
+        color: #FF63A3;
+      }
+
+    }
+  }
+}
+.star-active{
+  color: #FF63A3 !important;
+}
+.action-description{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0 40px;
+  padding-left: 50px;
+
+  & a{
+    color: #1174a6;
+    font-weight: 500;
+  }
+}
+.action-btn{
+  display: flex;
+
+}
+.btn-description-submit{
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.btn-description-submit a{
+  display: inline-block;
+  min-width: 180px;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid #1174a6;
+  white-space: nowrap;
+  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 1.42857;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #1174a6;
+
+  &:hover{
+    color: #fff;
+    background-color: #0c5478;
+    border-color: #0b4d6e;
+  }
+}
+.btn-description-return{
+  margin-right: 10px;
+  color: #1174a6;
+  background-color: #fff;
+
+  min-width: 180px;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid #1174a6;
+  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 1.42857;
+  border-radius: 3px;
+  &:hover{
+    color: #1174a6;
+    background-color: #e6e6e6;
+    border-color: #0b4d6e;
+  }
+}

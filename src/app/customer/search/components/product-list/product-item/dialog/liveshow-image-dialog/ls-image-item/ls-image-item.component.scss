@@ -1,0 +1,25 @@
+.ls-image__item{
+    width: 93px;
+    padding-bottom: 66.6666%;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-right: 8px;
+    box-sizing: content-box;
+    position: relative;
+}
+.ls-image__item .ls-image__item--slt{
+    border: 2px solid #fff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0
+}
+.ls-image__item img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

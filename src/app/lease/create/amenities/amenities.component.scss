@@ -1,0 +1,139 @@
+.content-amenities{
+  padding-top: 20px;
+  padding-left: 50px;
+}
+
+.card-header {
+  width: 100%;
+  display: flex;
+}
+
+.card-header-left {
+  width: 66.66667%;
+
+}
+.content-header-one {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.1;
+
+}
+
+.card-header-right {
+  width: calc(100% - 66.6667%);
+  padding-right: 15px;
+  padding-left: 15px;
+
+  & img {
+    width: 100%;
+  }
+}
+.panel-amenities{
+  & p{
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.1;
+
+  }
+  & span{
+    font-size: 14px;
+  }
+
+  &-form{
+    margin-top: 16px;
+    display: flex;
+
+
+    flex-wrap: wrap;
+    padding: 15px;
+    background: #FFFFFF;
+
+
+    border: 1px solid #dddfe2;
+    border-radius: 5px;
+  }
+  &-item{
+    width: 33%;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+
+    height: fit-content;
+
+
+    & input{
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+  }
+}
+.action-amenities{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 0 40px;
+  padding-left: 50px;
+
+  & a{
+    color: #1174a6;
+    font-weight: 500;
+  }
+}
+.action-btn{
+  display: flex;
+}
+.btn-amenities-submit{
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.btn-amenities-submit a{
+  display: inline-block;
+  min-width: 180px;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid #1174a6;
+  white-space: nowrap;
+  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 1.42857;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #1174a6;
+
+  &:hover{
+    color: #fff;
+    background-color: #0c5478;
+    border-color: #0b4d6e;
+  }
+}
+.btn-amenities-return{
+  margin-right: 10px;
+  color: #1174a6;
+  background-color: #fff;
+
+  min-width: 180px;
+  font-weight: 600;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid #1174a6;
+  padding: 10px 15px;
+  font-size: 14px;
+  line-height: 1.42857;
+  border-radius: 3px;
+  &:hover{
+    color: #1174a6;
+    background-color: #e6e6e6;
+    border-color: #0b4d6e;
+  }
+}

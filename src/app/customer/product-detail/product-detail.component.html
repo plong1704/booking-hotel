@@ -1,0 +1,203 @@
+<app-filter-bar></app-filter-bar>
+<div class="pd-container" *ngIf="productDetail$ | async as productDetail">
+  <div class="grid wide" #overviewSection>
+    <div class="product-image__container">
+      <app-product-image
+        [images]="productDetail.hotel.hotelImages"
+      ></app-product-image>
+      <div
+        class="d-flex-bh justify-content-end-bh favorite-icon"
+        (click)="onAddToFavoriteList(productDetail.hotel.id)"
+      >
+        <i class="fa-sharp fa-solid fa-heart"></i>
+      </div>
+    </div>
+  </div>
+  <div class="tab__wrapper" #tabWrapper>
+    <div class="row">
+      <div class="col l-9 m-8 c-12">
+        <div class="tab__list">
+          <div class="tab__item" (click)="scrollToElement(overviewSection)">Tổng quan</div>
+          <div class="tab__item" (click)="scrollToElement(roomTab)">
+            Phòng nghỉ
+          </div>
+          <div class="tab__item" (click)="scrollToElement(facilityTab)">Tiện nghi</div>
+          <div class="tab__item">Đánh giá</div>
+          <div class="tab__item">Vị trí</div>
+        </div>
+      </div>
+      <div class="col l-3 m-4 c-0">
+        <div
+          class="d-flex-bh align-items-center-bh justify-content-end-bh h-fit " 
+        >
+          <div class="price-from">
+            <span class="fs-10">Từ</span>
+            <span>{{
+              productDetail.rooms[0].rentalPrice | currency : "VND"
+            }}</span>
+          </div>
+          <button mat-raised-button color="primary" (click)="scrollToElement(roomTab)">Xem giá</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid wide">
+    <div class="product-info__container">
+      <div class="row">
+        <div class="col l-9 m-9 c-9">
+          <div class="short-desc">
+            <div class="line-box">
+              <div style="border-bottom: 1px solid #ccc">
+                <div class="row">
+                  <div class="col l-12 m-12 c-8">
+                    <div class="d-flex-bo" style="margin-bottom: 10px">
+                      <div
+                        class="vip-member__wrapper"
+                        *ngIf="productDetail.hotel.isDeals"
+                      >
+                        <div class="vip-member">
+                          <div class="left">
+                            <app-star-svg [fillColor]="'#fff'"></app-star-svg>
+                            <span>VIP</span>
+                          </div>
+                          <div class="right">
+                            <span>Spring Deals</span>
+                          </div>
+                          <div class="right-line"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="d-flex-bh align-items-center-bh hotel-name__wrapper"  style="flex-wrap: wrap"
+                    >
+                      <div class="hotel-name">
+                        {{ productDetail.hotel.name }}
+                      </div>
+                      <app-start-rating
+                        [starRating]="productDetail.hotel.starRating"
+                      ></app-start-rating>
+                    </div>
+                    <div class="address">
+                      {{ productDetail.hotel.address.street }},
+                      {{ productDetail.hotel.address.ward }},
+                      {{ productDetail.hotel.address.district }},
+                      {{ productDetail.hotel.address.province }}
+                    </div>
+                  </div>
+                  <div class="l-0 m-0 c-4" >
+                    <div
+                    class="d-flex-bh align-items-center-bh justify-content-end-bh h-fit " style="flex-wrap: wrap"
+                  >
+                    <div class="price-from">
+                      <span class="fs-10">Từ</span>
+                      <span>{{
+                        productDetail.rooms[0].rentalPrice | currency : "VND"
+                      }}</span>
+                    </div>
+                    <button mat-raised-button color="primary" (click)="scrollToElement(roomTab)">Xem giá</button>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="desc">{{ productDetail.hotel.description }}</div>
+            </div>
+          </div>
+          <div class="benefits">
+            <div class="line-box">
+              <div class="label">Điểm nổi bật</div>
+              <div class="row" style="align-items: center">
+                <ng-container
+                  *ngFor="let i of productDetail.hotel.facilities.slice(0, 5)"
+                >
+                  <div class="col l-3 m-4 c-6">
+                    <div
+                      class="benefit__item"
+                      style="color: var(--primary-color)"
+                    >
+                      <!-- <i class="fa-solid fa-check"></i> -->
+                      <span>{{ i.name }}</span>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="benefits">
+            <div class="line-box">
+              <div class="label">Tiện nghi nổi bật</div>
+              <div class="row no-gutters" style="align-items: center">
+                <ng-container
+                  *ngFor="let i of productDetail.hotel.facilities.slice(5, 13)"
+                >
+                  <div class="col l-3 m-4 c-6">
+                    <div class="benefit__item">
+                      <i class="fa-solid fa-check"></i>
+                      <span>{{ i.name }}</span>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l-3 m-3 c-3">
+          <div class="rate">
+            <div class="line-box">
+              <div class="d-flex-bo">
+                <div>
+                  <div class="points">
+                    {{ productDetail.hotel.averageRating.points }}
+                    {{ productDetail.hotel.averageRating.name }}
+                  </div>
+                  <div class="reviews">
+                    {{ productDetail.hotel.averageRating.reviews }} bài đánh giá
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section room__container" #roomTab>
+      <div class="section__header">
+        <h2>Chọn phòng</h2>
+      </div>
+      <ng-container *ngFor="let roomItem of productDetail.rooms; index as idx">
+        <app-room-item
+          [room]="roomItem"
+          [isMinPrice]="idx == 0"
+        ></app-room-item>
+      </ng-container>
+    </div>
+    <div class="section facility__container" #facilityTab>
+        <div class="row">
+          <div class="col l-4 m-4 c-4">
+          </div>
+          <div class="col l-8 m-8 c-8">
+            <div class="facility__wrapper line-box">
+              <div class="facility__header">
+                <h2>Tiện nghi và cơ sở vật chất</h2>
+                <div class="facility__list row">
+                  <ng-container *ngFor="let hotelFacilityGroup of productDetail.hotelFacilityGroups">
+                    <div class="facility__item col l-4 m-4 c-4">
+                      <h4 class="group__name">
+                        {{hotelFacilityGroup.name}}
+                      </h4>
+                      <ul>
+                        <ng-container *ngFor="let f of hotelFacilityGroup.facilities">
+                          <li>
+                            {{f.name}}
+                          </li>
+                        </ng-container>
+                      </ul>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

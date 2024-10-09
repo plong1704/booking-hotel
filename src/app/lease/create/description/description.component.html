@@ -1,0 +1,102 @@
+<form class="content-description" [formGroup]="rfDescription">
+  <div class="card-header">
+    <div class="card-header-left">
+      <p class="content-header-one">Những ưu điểm và nét độc đáo tại chỗ ở của bạn là gì?</p>
+      <p>Mỗi căn phòng, mỗi ngôi nhà đều có những nét độc đáo riêng. Hãy giới thiệu các đặc điểm nổi bật tại nơi ở của
+        bạn.</p>
+    </div>
+    <div class="card-header-right">
+      <img src="https://img.agoda.net/images/header/ec-description@2x.png" alt="">
+    </div>
+  </div>
+  <div class="panel-description">
+    <p>Đặt tên cho nhà</p>
+    <span>Hãy tận dụng, và làm cho nó nghe có vẻ hấp dẫn. Đừng lo lắng, chúng tôi sẽ tạo các ngôn ngữ khác bằng mẫu dịch chuẩn</span>
+    <div class="panel-description-form">
+      <input type="text"
+             formControlName="name"
+             placeholder="Ví dụ: Romantic beach getaway, perfect for honeymooners" >
+      <small>
+        50
+      </small>
+    </div>
+  </div>
+  <div class="panel-description">
+    <p>Mô tả nhà của bạn</p>
+    <span>Những đặc điểm nổi bật của căn hộ để thu hút du khách</span>
+    <div class="panel-description-form">
+      <textarea
+        rows="5"
+        formControlName="description"
+
+        placeholder="Ví dụ:
+• Cách phương tiện công cộng 5 phút đi bộ
+• Phù hợp cho gia đình
+• Không gian thoáng đãng với tầm nhìn đẹp và tràn đây ánh sáng tự nhiên"></textarea>
+      <small>
+        5000
+      </small>
+    </div>
+  </div>
+
+  <div class="panel-payment">
+    <p>FreeCancelation</p>
+    <span>Vui lòng chọn.</span>
+    <div class="panel-payment-form">
+
+      <div class="payment-item" *ngFor="let item of _frees">
+        <input type="radio"
+
+               value="{{item.title}}"
+               formControlName="isFreeCancellation"
+        >
+        <div class="payment-name">
+          <p style="font-weight: normal">
+            {{item.title}}
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="panel-payment">
+    <p>Deals</p>
+    <span>Vui lòng chọn.</span>
+    <div class="panel-payment-form">
+
+      <div class="payment-item" *ngFor="let item of _deals">
+        <input type="radio"
+
+               value="{{item.title}}"
+               formControlName="isDeal"
+        >
+        <div class="payment-name">
+          <p style="font-weight: normal">
+            {{item.title}}
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</form>
+<div class="action-description">
+  <a>LƯU VÀ THOÁT</a>
+  <div class="action-btn">
+    <button class="btn-description-return">
+      <a [routerLink]="['/lease/create/location']">TRƯỚC</a>
+    </button>
+
+    <button class="btn-description-submit">
+      <a
+        [routerLink]="['/lease/create/amenities']"
+
+
+        (click)="submitForm()"
+      >TIẾP THEO</a>
+    </button>
+  </div>
+</div>

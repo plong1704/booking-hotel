@@ -1,0 +1,128 @@
+<form class="content-basic" [formGroup]="rfBasic">
+
+  <div class="card-header">
+    <div class="card-header-left">
+      <p class="content-header-one">Giúp bạn tiếp cận đối tượng khách hàng phù hợp nhất.</p>
+      <p>Vui lòng cung cấp mọi thông tin được yêu cầu trừ khi có đánh dấu không bắt buộc.</p>
+    </div>
+    <div class="card-header-right">
+      <img src="https://img.agoda.net/images/header/ec-basics@2x.png" alt="">
+    </div>
+  </div>
+  <p class="content-header-two">Trước hết, hãy cung cấp cho chúng tôi đường dẫn danh sách chỗ ở Airbnb của quý đối
+    tác</p>
+  <div class="highlight-lable">
+    Tải Lên Nhanh
+  </div>
+  <div class="panel-highlight">
+    <div class="panel-highlight-body">
+      <div class="panel-highlight-form">
+        <label>Làm chủ nhà trên Airbnb rồi ư?</label>
+        <p>Hãy cung cấp cho chúng tôi đường dẫn danh sách chỗ ở Airbnb của quý đối tác và chúng tôi sẽ chuyển nhập hầu
+          hết nội dung từ danh sách chỗ ở Airbnb của quý đối tác.</p>
+        <div class="panel-highlight-form-input">
+          <input type="text" placeholder="Nhập cùng một đường dẫn danh sách chỗ ở mà khách có thể sử dụng.">
+          <button>CHUYỂN NHẬP</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-highlight-bottom">
+      <label>Có hơn 5 chỗ nghỉ trên Airbnb ư?</label>
+      <a href="#">Hãy sử dụng công cụ chuyển nhập nhiều chỗ nghỉ của chúng tôi
+      </a>
+    </div>
+  </div>
+
+  <div class="panel-business">
+    <p>Cơ sở kinh doanh</p>
+    <div class="panel-business-form">
+      <label>Tên Loại hình</label>
+      <div class="panel-business-1-form-input">
+        <input type="text" formControlName="name">
+
+      </div>
+
+
+      <label>Bạn không thấy loại hình lưu trú cần có? Muốn đăng mặt bằng riêng hoặc phòng ở chung?</label>
+      <a>Hãy đăng lên Agoda YCS</a>
+      <div class="panel-business-form-input">
+        <input type="text">
+        <span>mét vuông</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="panel-detail-room">
+    <p>Chi tiết phòng ở</p>
+    <div class="panel-detail-room-form">
+      <div class="panel-detail-room-form-item">
+        <label>Sức chứa</label>
+        <p>Số lượng người lớn tối đa.</p>
+        <div class="panel-detail-room-form-input">
+          <button (click)="minusAdult()">
+            <p>-</p>
+
+          </button>
+          <input type="text" min="1" max="30" formControlName="maxAdults" [(ngModel)]="maxAdults">
+          <button (click)="plusAdult()">
+            <p>+</p>
+          </button>
+        </div>
+      </div>
+      <div class="panel-detail-room-form-item">
+        <label>Sức chứa</label>
+        <p>Số lượng trẻ em tối đa.
+
+        </p>
+        <div class="panel-detail-room-form-input">
+          <button (click)="minusChildren()">
+            <p>-</p>
+
+          </button>
+          <input type="text" min="1" max="30" formControlName="maxChildren" [(ngModel)]="maxChildren">
+          <button (click)="plusChildren()">
+            <p>+</p>
+          </button>
+        </div>
+      </div>
+      <div class="panel-detail-room-form-item">
+        <label>Giá niêm yết</label>
+
+        <div class="panel-business-1-form-input">
+          <input type="text" formControlName="originPrice">
+          <span>đ</span>
+        </div>
+
+      </div>
+      <div class="panel-detail-room-form-item">
+        <label>Giá sau khi giảm</label>
+
+        <div class="panel-business-1-form-input">
+          <input type="text" formControlName="rentalPrice">
+          <span>đ</span>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+</form>
+<div class="action-basic">
+  <a>LƯU VÀ THOÁT</a>
+  <button class="btn-basic-submit"
+
+  >
+    <a
+      [routerLink]="['/lease/create/location']"
+
+
+      (click)="onSubmit()"
+    >TIẾP THEO</a>
+
+  </button>
+</div>
+

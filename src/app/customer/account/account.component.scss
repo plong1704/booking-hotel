@@ -1,0 +1,20 @@
+.account{
+    margin: 20px 0;
+}
+.scroll-item{
+    padding: 20px 0 20px 50px;
+    display: block;
+}
+.scroll-item:hover{
+    background-color: rgba($color: #efefef, $alpha: .3);
+}
+
+.mat-expansion-panel-header[aria-disabled=true]{
+    color: unset !important;
+}
+::ng-deep .account .mat-expansion-panel-body {
+    padding: unset !important
+}
+.router-link--active{
+    background:  rgba(#5390f9, .05);
+}

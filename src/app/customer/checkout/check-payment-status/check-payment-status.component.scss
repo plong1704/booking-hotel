@@ -1,0 +1,61 @@
+.checkout {
+  &-header {
+    position: relative;
+    .home-img {
+      width: 14%;
+      margin: 1em 0 1em 6em;
+      img {
+        width: 80px;
+        height: 50px;
+      }
+    }
+    .process-bar {
+      width: 60%;
+      ::ng-deep .mat-horizontal-content-container {
+        padding-bottom: 0 !important;
+      }
+    }
+  }
+}
+
+.status {
+  &-container {
+    min-height: 50vh;
+    justify-content: center;
+    padding: 0 15px 5px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10em;
+    margin-bottom: 20em;
+    border-radius: 5px;
+    i {
+      font-size: 1000%;
+      &.checked {
+        color: rgb(6, 191, 6);
+      }
+    }
+  }
+}
+
+.btn-manage {
+  padding: 15px;
+  transition: all ease-in-out 0.2s;
+  position: relative;
+  z-index: 20;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+#error-img {
+  position: relative;
+  top: 50%;
+  z-index: 19;
+  transform: scale(6);
+  object-fit: cover;
+}
+
+.error-title {
+  padding-top: 5em;
+}

@@ -1,0 +1,25 @@
+<ul class="ls-image__container">
+    <div class="ls-image__main">
+        <ul class="ls-image__list">
+            <ng-container *ngFor="let image of data.images; index as idx">
+                <div class="ls-image__item" [class.show]="idx === selectedImageIdx">
+                    <img [src]="image.url" alt="">
+                </div>
+            </ng-container>
+                <div class="control pre" (click)="controlLiveshow('-')">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <div class="control next" (click)="controlLiveshow('+')">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+        </ul>
+    </div>
+    <div class="ls-image__footer">
+        <ul class="ls-image__list">
+            <ng-container *ngFor="let image of data.images; index as idx">
+                <app-ls-image-item [image]="image" [isSlt]="selectedImageIdx === idx" (click)="selectedImageIdx = idx">
+                </app-ls-image-item>
+            </ng-container>
+        </ul>
+    </div>
+</ul>

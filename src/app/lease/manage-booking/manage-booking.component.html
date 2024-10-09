@@ -1,0 +1,58 @@
+
+<div class="container-manage-booking"  style="width: 1170px;margin: 0 auto">
+  <div class="header-booking">
+    Tổng quan đơn đặt phòng
+  </div>
+  <div class="mat-elevation-z8 table-incomplete" style="box-shadow: none; border: 1px solid #cdd7eb;border-radius: 8px;">
+  <table mat-table [dataSource]="dataSource" style="width: 100%;box-shadow: none">
+
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Ngày Tạo">
+      <th mat-header-cell *matHeaderCellDef  style="width: 20%;text-align: center" >Ngày Tạo</th>
+      <td mat-cell *matCellDef="let element" style="width: 20%;text-align: center" > {{element.createdDate}}  </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="Ngày chỉnh sửa">
+      <th mat-header-cell *matHeaderCellDef style="width: 20%;text-align: center" >Ngày chỉnh sửa</th>
+      <td mat-cell *matCellDef="let element"style="width: 20%;text-align: center" > {{element.modifiedDate}}  </td>
+    </ng-container>
+    <ng-container matColumnDef="Số lượng người lớn">
+      <th mat-header-cell *matHeaderCellDef style="width: 10%;text-align: center" >Số lượng người lớn</th>
+      <td mat-cell *matCellDef="let element"style="width: 10%;text-align: center" > {{element.adult}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Số lượng trẻ em">
+      <th mat-header-cell *matHeaderCellDef style="width: 10%;text-align: center" >Số lượng trẻ em</th>
+      <td mat-cell *matCellDef="let element"style="width: 10%;text-align: center" > {{element.children}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Giảm %">
+      <th mat-header-cell *matHeaderCellDef style="width: 5%;text-align: center" >Giảm %</th>
+      <td mat-cell *matCellDef="let element"style="width: 5%;text-align: center" > {{element.discountPercent}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Giá">
+      <th mat-header-cell *matHeaderCellDef style="width: 10%;text-align: center" >Giá</th>
+      <td mat-cell *matCellDef="let element"style="width: 10%;text-align: center" > {{element.price}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Trạng thái">
+      <th mat-header-cell *matHeaderCellDef style="width: 10%;text-align: center" >Trạng thái</th>
+      <td mat-cell *matCellDef="let element"style="width: 10%;text-align: center" > {{element.status}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Khách sạn">
+      <th mat-header-cell *matHeaderCellDef style="width: 10%;text-align: center" >Khách sạn</th>
+      <td mat-cell *matCellDef="let element"style="width: 10%;text-align: center" > {{element.hotelId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Phòng">
+      <th mat-header-cell *matHeaderCellDef style="width: 10%;text-align: center" >Phòng</th>
+      <td mat-cell *matCellDef="let element"style="width: 10%;text-align: center" > {{element.roomId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Bởi">
+      <th mat-header-cell *matHeaderCellDef style="width: 10%;text-align: center" >Bởi</th>
+      <td mat-cell *matCellDef="let element"style="width: 10%;text-align: center" > {{element.username}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </div>
+</div>

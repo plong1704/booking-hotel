@@ -1,0 +1,118 @@
+<form class="content-profile" [formGroup]="rfProfile">
+  <div class="card-header">
+    <div class="card-header-left">
+      <p class="content-header-one">Cho chúng tôi biết bạn là ai</p>
+      <p>Vui lòng cung cấp đầy đủ họ tên pháp lý chính thức để lập hợp đồng với Agoda. Chúng tôi sẽ liên hệ với bạn nếu cần có thêm các thông tin khác.
+      </p>
+    </div>
+
+  </div>
+  <div class="panel-home">
+    <p>Loại chủ nhà</p>
+    <span>Để tuân thủ các cam kết với cơ quan quản lý người tiêu dùng, chúng tôi phải thu thập những thông tin sau từ các đối tác</span>
+    <div class="panel-home-form">
+
+      <div class="home-item" *ngFor="let item of _homes">
+        <input type="radio"
+
+               value="{{item.title}}" (change)="changeValue(item.id)"
+               formControlName="typeHost"
+
+        >
+        <div class="home-name">
+          <p>
+            {{item.title}}
+          </p>
+          <span>
+          {{item.desc}}
+            </span>
+
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="value==1" formGroupName="mySelf">
+      <div class="panel-host">
+        <div class="panel-host-title">
+          Chi tiết chủ nhà
+        </div>
+        <div class="panel-host-form">
+          <p>Họ tên</p>
+          <div class="panel-host-form-input">
+            <div class="panel-host-form-input-box">
+             <div class="panel-host-form-input-item-three">
+               <p>Tên</p>
+               <input type="text"
+                      formControlName="firstName"
+               >
+             </div>
+              <div class="panel-host-form-input-item-three">
+                <p>Họ</p>
+                <input type="text"  formControlName="lastName">
+              </div>
+            </div>
+            <div class="panel-host-form-input-item-one">
+              <p>Tên hiển thị (không bắt buộc)</p>
+              <span>Đây là tên sẽ được hiển thị trên trang web và ứng dụng Agoda.</span>
+              <input type="text">
+            </div>
+            <div class="panel-host-form-input-item-one">
+              <p>Ngày sinh</p>
+
+              <input type="date"  formControlName="date">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="value==2" formGroupName="company">
+      <div class="panel-city">
+        <div class="panel-city-title">
+          Chi tiết công ty
+        </div>
+        <div class="panel-city-form">
+          <p>Thông tin công ty</p>
+          <span>Vui lòng nhập thông tin công ty của quý đối tác</span>
+          <div class="panel-city-form-input">
+            <div class="panel-city-form-input-box">
+              <div class="panel-city-form-input-item-three">
+                <p>Tên pháp lý của công ty</p>
+                <input type="text"  formControlName="nameCompany">
+              </div>
+
+            </div>
+            <div class="panel-city-form-input-box">
+              <div class="panel-city-form-input-item-two">
+                <p>Địa chỉ công ty</p>
+                <input type="text"  formControlName="addressCompany">
+              </div>
+
+            </div>
+            <div class="panel-city-form-input-box">
+              <div class="panel-city-form-input-item-three">
+                <p>Mã vùng</p>
+                <input type="text"  formControlName="codeAreaCompany">
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</form>
+<div class="action-profile">
+  <a>LƯU VÀ THOÁT</a>
+  <div class="action-btn">
+    <button class="btn-profile-return">
+      <a [routerLink]="['/lease/create/photos']">TRƯỚC</a>
+    </button>
+
+    <button class="btn-profile-submit">
+      <a (click)="submitForm()">TIẾP THEO</a>
+    </button>
+  </div>
+</div>

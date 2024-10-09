@@ -1,0 +1,40 @@
+<app-filter-bar></app-filter-bar>
+<div class="search-page-container">
+  <div class="grid wide">
+    <div class="row">
+      <div class="col l-3 m-3 c-12">
+        <div class="sidebar__wrapper overlay-mobile" id="overlay" [class.show]="openDialog"  (click)="a($event)">
+          <div class="content" >
+            <div
+              class="header d-flex-bh align-items-center-bh justify-content-between-bh pd-b-10 hide-on-tablet hide-on-pc"
+            >
+              <h3 class="mb-0">Bộ lọc</h3>
+              <mat-icon class="cursor-pointer" (click)="openDialog = false"
+                >close</mat-icon
+              >
+            </div>
+            <div class="hide-on-pc hide-on-tablet">
+              <app-nav-bar-filter></app-nav-bar-filter>
+            </div>
+            <app-side-bar-filter></app-side-bar-filter>
+          </div>
+        </div>
+      </div>
+      <div class="col l-9 m-8 c-12">
+        <a
+          class="hide-on-tablet hide-on-pc d-flex-bh align-items-center-bh justify-content-end-bh pd-x-10 mr-b-10"
+        >
+          <span class="mr-r-5">Hiển thị bộ lọc</span>
+          <mat-slide-toggle
+            [(ngModel)]="openDialog"
+            color="primary"
+          ></mat-slide-toggle>
+        </a>
+        <div class="hide-on-mobile">
+          <app-nav-bar-filter></app-nav-bar-filter>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

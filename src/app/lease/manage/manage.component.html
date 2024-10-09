@@ -1,0 +1,69 @@
+<!--<div class="container-manage">-->
+
+<!--  <div class="header-manage">-->
+<!--    <form  class="form-search">-->
+<!--      <div>-->
+<!--        <input type="text" placeholder="Tìm kiếm mã hoặc tên chỗ nghỉ">-->
+<!--        <mat-icon>search</mat-icon>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--    <div class="list-button">-->
+<!--      <div class="button-one">-->
+<!--        <a >Chuyển nhập chỗ ở</a>-->
+<!--      </div>-->
+<!--      <div class = "button-two">-->
+<!--        <a >Thêm một chỗ ở</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+
+<!--<mat-tab-group>-->
+<!--  <mat-tab label="Chưa hoàn chỉnh">-->
+<!--    <div class="mat-elevation-z8 table-incomplete" style="width: 100%">-->
+<!--      <table mat-table [dataSource]="dataSource">-->
+
+<!--        &lt;!&ndash; Position Column &ndash;&gt;-->
+<!--&lt;!&ndash;        <ng-container matColumnDef="businessPremises" >&ndash;&gt;-->
+<!--&lt;!&ndash;          <th mat-header-cell *matHeaderCellDef style="width: 15%">Cơ sở kinh doanh</th>&ndash;&gt;-->
+<!--&lt;!&ndash;          <td mat-cell *matCellDef="let element" style="width: 15%">&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;            <img src="{{element.businessPremises}}" style="width: 50px;height: 50px">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;          </td>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ng-container>&ndash;&gt;-->
+
+<!--        &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--        <ng-container matColumnDef="numAccommodations" >-->
+<!--          <th mat-header-cell *matHeaderCellDef style="width: 5%;text-align: center" >Trạng thái</th>-->
+<!--          <td mat-cell *matCellDef="let element" style="width: 5%;text-align: center"> {{element.basic.numAccommodations}} </td>-->
+<!--        </ng-container>-->
+
+<!--        &lt;!&ndash; Weight Column &ndash;&gt;-->
+<!--        <ng-container matColumnDef="numBedroom">-->
+<!--          <th mat-header-cell *matHeaderCellDef  style="width: 10%;text-align: center">Mã</th>-->
+<!--          <td mat-cell *matCellDef="let element" style="width: 10%;text-align: center"> {{element.basic.numBedroom}} </td>-->
+<!--        </ng-container>-->
+
+<!--        &lt;!&ndash; Symbol Column &ndash;&gt;-->
+<!--        <ng-container matColumnDef="city">-->
+<!--          <th mat-header-cell *matHeaderCellDef style="width: 10%;text-align: center">Kích cỡ</th>-->
+<!--          <td mat-cell *matCellDef="let element"style="width: 10%;text-align: center"> {{element.location.city}} </td>-->
+<!--        </ng-container>-->
+
+
+<!--        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--      </table>-->
+
+<!--      <mat-paginator [pageSizeOptions]="[5, 10, 20]"-->
+<!--                     showFirstLastButtons-->
+<!--                     aria-label="Select page of periodic elements">-->
+<!--      </mat-paginator>-->
+<!--    </div>-->
+
+
+<!--  </mat-tab>-->
+<!--  <mat-tab label="Đang hoạt động"> Content 2 </mat-tab>-->
+<!--  <mat-tab label="Ngưng hoạt động"> Content 3 </mat-tab>-->
+<!--</mat-tab-group>-->

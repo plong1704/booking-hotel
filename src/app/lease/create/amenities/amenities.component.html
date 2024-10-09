@@ -1,0 +1,43 @@
+<form class="content-amenities">
+  <div class="card-header">
+    <div class="card-header-left">
+      <p class="content-header-one">Tất cả các tiện nghi và những vật dụng nhỏ bạn cung cấp.</p>
+      <p>Nhà bạn có sẵn những vật dụng và tiện nghi gì?
+        </p>
+    </div>
+    <div class="card-header-right">
+      <img src="https://img.agoda.net/images/header/ec-amenities@2x.png" alt="">
+    </div>
+  </div>
+  <div class="panel-amenities">
+    <p>Khuyến nghị</p>
+    <span>Du khách thích các tiện nghi này hơn khi đặt nhà</span>
+    <div class="panel-amenities-form">
+      <div class="panel-amenities-item" *ngFor="let item of _amenitiesList ; let i=index">
+
+           <input type="checkbox" name="{{item.name}}"  formControlName="recomendation"
+           (change)="onCheckboxChange($event)"
+           >
+        <span>{{item.name}}</span>
+
+
+      </div>
+    </div>
+  </div>
+
+</form>
+<div class="action-amenities">
+  <a>LƯU VÀ THOÁT</a>
+  <div class="action-btn">
+    <button class="btn-amenities-return">
+      <a [routerLink]="['/lease/create/description']">TRƯỚC</a>
+    </button>
+
+    <button class="btn-amenities-submit">
+      <a
+        [routerLink]="['/lease/create/pricing']"
+      (click)="submitForm()"
+      >TIẾP THEO</a>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="favorite-container">
+    <div class="favorite-bar">
+        <p class="empty-heading">Danh sách yêu thích</p>
+    </div>
+    <div class="d-flex-bh flex-wrap-bh justify-content-center-bh text-center"
+        *ngIf="favorite_list&&favorite_list.length<1">
+        <p class="w-fit empty-heading">Chưa có gì ở đây</p>
+        <div class="empty-img">
+            <img src="../../../assets/images/img-camel-fresh.png" alt="">
+        </div>
+        <p class="w-fit">Chỉ cần nhấp vào biểu tượng trái tim của trang khách sạn để lưu lại và dễ dàng tìm lại sau đó.
+        </p>
+        <button class="btn btn-primary bx__shadow btn-back" (click)="goBack()">Quay lại</button>
+    </div>
+    <div class="d-flex-bh flex-wrap-bh" *ngIf="favorite_list && favorite_list.length>0">
+        <div class="d-flex-bh flex-wrap-bh option-container">
+            <button (click)="toggleShowDayCalendar()" #toggleCalendar>Ngày</button>
+            <button (click)="toggleShowPeopleOptions()" #togglePeople>Khách</button>
+        </div>
+        <div class="d-flex-bh flex-wrap-bh favorite-item w-fit">
+            <div class="item-content cursor-pointer" *ngFor="let item of favorite_list"
+                [routerLink]="['/details/',item.hotelId]">
+                <div class="item-image">
+                    <img [src]="BASE_IMG+item.bannerUrl" [alt]="item.name">
+                </div>
+                <div class="toggle-icon cursor-pointer" (click)="deleteFavoriteHotel(item.id)">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="item-informations">
+                    <div class="item-name">
+                        <p>{{item.name}}</p>
+                    </div>
+                    <div class="item-address">
+                        <p>{{item.address}}</p>
+                    </div>
+                    <div class="item-stars">
+                        <i class="fa-solid fa-star cl-star"
+                            *ngFor="let i of [].constructor(getRoundedRating(item.avgRating))"></i>
+                    </div>
+                    <div class="item-rating d-flex-bh flex-wrap-bh">
+                        <div class="rating-point">
+                            <p>{{item.avgRating}}<span>{{getAvgRatingString(item.avgRating)}}</span></p>
+                        </div>
+                        <div class="rating-total">
+                            <p class="text-end"><span>{{item.totalRating}}</span> nhận xét</p>
+                        </div>
+                    </div>
+                    <div class="item-price text-end">
+                        <p class="original-price">Mỗi đêm từ <span>{{getMoneyFormat(item.originPrice)}}</span></p>
+                        <p class="rental-price">{{getMoneyFormat(item.finalPrice)}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div #calendar style="position:absolute;top:33%;z-index:10;width:300px">
+        <mat-card style="width:300px" *ngIf="showDayCalendar">
+            <mat-calendar (selectedChange)="_onSelectedChange($event)" [selected]="selectedDateRange"
+                [minDate]="todayDate"></mat-calendar>
+            <div class="d-flex-bh flex-wrap-bh people-options">
+                <div class="people-column d-flex-bh align-items-end-bh">
+                    <button class="peoples-delete" (click)="onResetDate()">Xóa</button>
+                </div>
+                <div class="people-column d-flex-bh justify-content-end">
+                    <button class="peoples-save" (click)="onSaveDateOption()">Lưu</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <div #people style="position:absolute;left:17%;top:33%;z-index:10;width:300px">
+        <mat-card class="people-card" [formGroup]="peopleOptionsFormGroup" *ngIf="showPeopleOptions">
+            <div class="d-flex-bh flex-wrap-bh people-options">
+                <div class="people-column">
+                    <p class="option-title">Người lớn</p>
+                    <p>Từ 13 tuổi trở lên</p>
+                </div>
+                <div class="d-flex-bh flex-wrap-bh people-column modify-option">
+                    <button class="minus" [disabled]="getAdults()<2" (click)="setAdults(-1)">-</button>
+                    <div class="quantity">{{getAdults()}}
+                        <input type="hidden" formControlName="adults">
+                    </div>
+                    <button class="plus" (click)="setAdults(1)">+</button>
+                </div>
+            </div>
+            <div class="d-flex-bh flex-wrap-bh people-options">
+                <div class="people-column">
+                    <p class="option-title">Trẻ em</p>
+                    <p>Dưới 12 tuổi</p>
+                </div>
+                <div class="d-flex-bh flex-wrap-bh people-column modify-option">
+                    <button class="minus" [disabled]="getChild()<1" (click)="setChild(-1)">-</button>
+                    <div class="quantity">{{getChild()}}
+                        <input type="hidden" formControlName="child">
+                    </div>
+                    <button class="plus" (click)="setChild(1)">+</button>
+                </div>
+            </div>
+            <div class="d-flex-bh flex-wrap-bh people-options">
+                <div class="people-column d-flex-bh align-items-end-bh">
+                    <button class="peoples-delete" (click)="onResetPeople()">Xóa</button>
+                </div>
+                <div class="people-column d-flex-bh justify-content-end">
+                    <button class="peoples-save" (click)="onSavePeopleOption()">Lưu</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>

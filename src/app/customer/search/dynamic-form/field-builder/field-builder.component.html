@@ -1,0 +1,7 @@
+    <li class="sidebar-filter__field" >
+                <h5 class="label">{{field.label}}</h5>
+                <ng-container [ngSwitch]="field.type">
+                    <app-checkbox-atom *ngSwitchCase="'checkbox'" [field]="field" [form]="form" [selectedField]="selectedField"></app-checkbox-atom>
+                    <app-radio-atom *ngSwitchCase="'radio'" [field]="field" [form]="form" [selectedField]="selectedField"></app-radio-atom>
+                </ng-container>
+    </li>

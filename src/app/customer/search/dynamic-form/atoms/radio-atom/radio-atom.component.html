@@ -1,0 +1,12 @@
+<mat-radio-group [(ngModel)]="field.value">
+    <ng-container *ngFor="let radioOption of
+            field.radioOptions">
+        <p>
+            <mat-radio-button [color]="field.color" [value]="radioOption.value" (change)="selectRadio(radioOption)">
+                <span style="font-size: 1.2rem;">
+                    {{radioOption.label}}<span> ({{radioOption.total}})</span>
+                </span>
+            </mat-radio-button>
+        </p>
+    </ng-container>
+</mat-radio-group>

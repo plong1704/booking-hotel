@@ -1,0 +1,50 @@
+<div class="nova-alert">
+    <div class="nava-icon">
+        <div class="svg-box">
+            <ng-container *ngIf="data.icon === 'success'">
+                <svg class="circular green-stroke" width="150">
+                    <circle class="path" cx="75" cy="75" r="50"/>
+                </svg>
+                <svg class="checkmark green-stroke">
+                    <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-489.57,-205.679)">
+                        <path class="checkmark__check" fill="none" d="M616.306,283.025L634.087,300.805L673.361,261.53"/>
+                    </g>
+                </svg>
+            </ng-container>
+            <ng-container *ngIf="data.icon === 'danger'">
+                <svg class="circular red-stroke" width="150">
+                    <circle class="path" cx="75" cy="75" r="50" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+                </svg>
+                <svg class="cross red-stroke">
+                    <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-502.652,-204.518)">
+                        <path class="first-line" d="M634.087,300.805L673.361,261.53" fill="none"/>
+                    </g>
+                    <g transform="matrix(-1.28587e-16,-0.79961,0.79961,-1.28587e-16,-204.752,543.031)">
+                        <path class="second-line" d="M634.087,300.805L673.361,261.53"/>
+                    </g>`
+                </svg>
+            </ng-container>
+        </div>
+    </div>
+    <h3 class="nova-title">{{data.title}}</h3>
+    <div class="nova-text">{{data.text}}</div>
+    <div class="nova-btns">
+    </div>
+</div>
+<mat-dialog-actions align="end" *ngIf="data.navigatePages as navigatePages">
+<ng-container>
+    <ng-container *ngFor="let navigatePage of navigatePages">
+        <ng-container *ngIf="navigatePage === 'login' ">
+            <button color="primary" mat-raised-button (click)="openLoginDialog()"
+                mat-dialog-close>Đăng nhập ngay !</button>
+        </ng-container>
+        <ng-container *ngIf="navigatePage === 'home' ">
+            <button color="primary" mat-button [routerLink]="['/home']"
+                mat-dialog-close>Trở về trang chủ</button>
+        </ng-container>
+        <ng-container *ngIf="navigatePage === 'close' ">
+            <button color="primary" mat-button mat-dialog-close>Đã hiểu</button>
+        </ng-container>
+    </ng-container>
+</ng-container>
+</mat-dialog-actions>

@@ -1,0 +1,199 @@
+.cart {
+  &-container {
+    background-color: #f6f7f9;
+    min-height: 100vh;
+    padding: 2em 10%;
+    .empty-cart {
+      padding: 10em;
+      width: 85%;
+      margin-left: auto;
+      margin-right: auto;
+      img {
+        margin: 30px;
+      }
+      p {
+        font-size: 130%;
+        margin: 20px 0;
+      }
+      .btn-search__other {
+        margin-top: 3em;
+        padding: 15px;
+        font-size: 105%;
+        transition: all ease-in-out 0.2s;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+  &-list {
+    &__container {
+      gap: 20px;
+    }
+    &__column {
+      &:nth-child(1) {
+        flex: 0 0 67%;
+      }
+      &:nth-child(2) {
+        flex: 0 0 30%;
+        background-color: white;
+        border: 1px solid rgb(213, 217, 226);
+        max-height: 18vh;
+        border-radius: 5px;
+      }
+    }
+    &__box {
+      background-color: white;
+      border: 1px solid rgb(213, 217, 226);
+      margin: 1em 0;
+      border-radius: 3px;
+      &:nth-child(1) {
+        margin: 0;
+      }
+      .text-summary {
+        font-size: 180%;
+        padding: 15px;
+      }
+      .typo-recommend {
+        width: 14%;
+        margin: 10px 10px 10px 15px;
+        padding: 5px;
+        background-color: green;
+        color: white;
+        border-radius: 3px;
+        font-size: 90%;
+        margin-bottom: 0;
+      }
+      .recommend {
+        &-title {
+          align-self: center;
+          font-weight: 600;
+          margin-top: 10px;
+        }
+        &-order {
+          margin-left: 15px;
+          padding-bottom: 5px;
+          color: var(--secondary-text);
+        }
+      }
+    }
+  }
+  &-item {
+    .item {
+      &-img {
+        padding: 10px;
+        flex: 0 0 10%;
+        min-height: 104px;
+        img {
+          height: 100%;
+          border-radius: 2px;
+          object-fit: cover;
+        }
+      }
+      &-information {
+        padding: 10px;
+        flex: 0 0 84%;
+        .item-name {
+          font-size: 120%;
+        }
+      }
+      &-delete {
+        padding: 10px;
+        flex: 0 0 1%;
+        font-size: 150%;
+      }
+      &-rating__icon {
+        margin: 0 2px;
+      }
+      &-location {
+        margin: 0 5px;
+      }
+      &-rating {
+        .rating {
+          &-point {
+            padding: 7px 4px;
+            background-color: rgb(62, 108, 234);
+            color: white;
+            font-weight: 600;
+            border-radius: 3px;
+          }
+          &-title {
+            font-weight: 600;
+            color: rgb(62, 108, 234);
+            margin: 0 10px;
+          }
+        }
+      }
+      &-selection {
+        margin: 0 10px;
+        mat-checkbox {
+          color: var(--primary-color);
+          padding-top: 10px;
+          font-size: 110%;
+        }
+      }
+      &-daterange {
+        font-size: 105%;
+      }
+      &-price {
+        width: 60%;
+        align-self: end;
+        .text-price {
+          margin-top: 10px;
+          font-size: 130%;
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+  &-total__price {
+    padding: 20px 10px;
+    .price-title {
+      font-size: 130%;
+      margin-bottom: 5px;
+    }
+    .total-item {
+      font-size: 90%;
+      color: var(--secondary-text);
+    }
+    .total-price__item {
+      width: 45%;
+      text-align: end;
+      font-size: 130%;
+      color: red;
+    }
+    .btn-continue {
+      padding: 10px;
+      transition: all ease 0.2s;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:disabled {
+        background-color: rgb(213, 217, 226) !important;
+        box-shadow: none !important;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.bg-chosen {
+  background-color: rgb(235, 240, 252);
+}
+
+::ng-deep
+  .cart-checkbox.mat-checkbox-checked.mat-accent
+  .mat-checkbox-ripple
+  .mat-ripple-element {
+  // opacity: 0.03 !important;
+  background-color: var(--primary-color) !important;
+}
+
+::ng-deep
+  .cart-checkbox.mat-checkbox-checked.mat-accent
+  .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: var(--primary-color);
+}

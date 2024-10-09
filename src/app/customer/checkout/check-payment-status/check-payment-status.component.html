@@ -1,0 +1,45 @@
+<app-loading-overlay *ngIf="showWaitingOverlay"></app-loading-overlay>
+<div class="d-flex-bh flex-wrap-bh checkout-header bx__shadow">
+    <div class="home-img">
+        <img src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg" alt="">
+    </div>
+    <div class="process-bar">
+        <mat-stepper linear #stepper class="w-fit">
+            <mat-step [editable]="false" [completed]="true">
+                <ng-template matStepLabel>
+                    <span class="primary-text">
+                        Thông tin khách hàng
+                    </span>
+                </ng-template>
+            </mat-step>
+            <mat-step [editable]="false" [completed]="true">
+                <ng-template matStepLabel>
+                    <span class="primary-text">
+                        Chi tiết thanh toán
+                    </span>
+                </ng-template>
+            </mat-step>
+            <mat-step [editable]="false" [completed]="isPaid">
+                <ng-template matStepLabel>
+                    <span class="primary-text" *ngIf="isPaid">Đã xác nhận đặt phòng</span>
+                    <span class="cl-danger" *ngIf="!isPaid">Thất bại</span>
+                </ng-template>
+            </mat-step>
+        </mat-stepper>
+    </div>
+</div>
+
+<div class="d-flex-bh flex-wrap-bh status-container bx__shadow">
+    <i class="fa-solid fa-check checked" *ngIf="isPaid"></i>
+    <div class="w-fit text-center" *ngIf="isPaid">
+        <h2>Đơn đặt phòng của bạn đã được xác nhận</h2>
+        <!-- <p>Mã đặt phòng của bạn là {{payment_id}}. Bạn có thể tự xem, hủy đơn đặt của bạn.</p> -->
+        <p>Chúng tôi đã nhận được đơn đặt phòng của bạn. Đơn đặt phòng của bạn sẽ được xử lý tối đa trong 12 giờ.</p>
+        <button class="btn btn-primary btn-manage" routerLink="/">QUẢN LÝ ĐƠN ĐẶT CỦA TÔI</button>
+    </div>
+    <div class="w-fit text-center" *ngIf="!isPaid">
+        <img src="../../../../assets/images/payment_failed.png" alt="" width="100" height="100" id="error-img">
+        <h2 *ngIf="!isPaid" class="error-title">Giao dịch thực hiện thất bại. Vui lòng thử lại sau !</h2>
+        <button class="btn btn-primary btn-manage" routerLink="/">TRỞ VỀ TRANG CHỦ</button>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="pi__container">
+  <div class="row no-gutters">
+    <div class="col l-4 m-4 c-4">
+        <div class="image__wrapper thumb" (click)="openLiveshowImage($event, thumbImage)">
+            <img
+              [src]="thumbImage.url"
+              alt=""
+            />
+        </div>
+    </div>
+    <div class="col l-8 m-8 c-8">
+      <div class="row no-gutters">
+        <ng-container *ngFor="let imgGroup of viewImages">
+          <div class="col l-4 m-4 c-4">
+            <div class="image__group">
+              <ng-container *ngFor="let image of imgGroup; index as idx">
+                <div class="image__wrapper" (click)="openLiveshowImage($event, image)">
+                    <img
+                      [src]="image.url"
+                      alt=""
+                    />
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

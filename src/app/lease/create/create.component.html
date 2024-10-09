@@ -1,0 +1,60 @@
+<div class="container-create">
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)]=opened mode="side">
+      <mat-list>
+        <mat-list-item>
+
+
+          <a routerLink="basic"
+             routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+
+          >
+            <mat-icon class="icon-no-active">check_circle_outline</mat-icon>
+            Thông
+            tin cơ bản</a>
+
+        </mat-list-item>
+        <mat-list-item>
+
+
+          <a routerLink="location" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+
+          >
+            <mat-icon class="icon-no-active">check_circle_outline</mat-icon>
+            Vị trí</a>
+
+
+          <!--          <a routerLink="location" routerLinkActive="active">Vị trí</a>-->
+        </mat-list-item>
+        <mat-list-item><a routerLink="description" routerLinkActive="active"
+                          [routerLinkActiveOptions]="{exact:true}"
+        >
+          <mat-icon class="icon-no-active">check_circle_outline</mat-icon>
+          Mô tả</a></mat-list-item>
+        <mat-list-item><a routerLink="amenities" routerLinkActive="active">
+          <mat-icon class="icon-no-active">check_circle_outline</mat-icon>
+          Tiện nghi</a></mat-list-item>
+        <mat-list-item><a routerLink="pricing" routerLinkActive="active">
+          <mat-icon class="icon-no-active">check_circle_outline</mat-icon>
+
+          Định giá</a></mat-list-item>
+
+        <mat-list-item><a routerLink="photos" routerLinkActive="active">
+          <mat-icon class="icon-no-active">check_circle_outline</mat-icon>
+          Ảnh</a></mat-list-item>
+
+        <!--        <mat-list-item><a routerLink="home" routerLinkActive="active">Đăng</a></mat-list-item>-->
+
+
+      </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+
+

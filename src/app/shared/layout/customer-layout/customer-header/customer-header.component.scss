@@ -1,0 +1,152 @@
+.header-container {
+  height: var(--header-height);
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+}
+.header-container .logo-wrapper {
+  width: 150px;
+  position: relative;
+}
+
+.header-container .logo-wrapper .logo__inner {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding-bottom: 43.33333333%;
+}
+
+.header-container .logo-wrapper .logo__inner img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.cart-wrapper {
+  margin: 0 16px;
+}
+.login-success {
+  display: flex;
+  align-items: center;
+}
+.login-success .avatar {
+  position: relative;
+  user-select: none;
+}
+.login-success .avatar  .image__wrapper .overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.login-success .avatar .image__wrapper:hover .overlay{
+  background-color: rgba($color: #ffffff, $alpha: .3);
+  z-index: 1;
+}
+.login-success .avatar .overlay-panel{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  font-size: 1.4rem;
+}
+.login-success .avatar .overlay-panel section{
+  border-top: 1px solid #ccc;
+}
+.login-success .avatar .overlay-panel section:first-child{
+  border-top: unset;
+}
+.login-success .avatar .overlay-panel section .section-item{
+  padding: 16px;
+  background-color: #fff;
+}
+
+.login-success .avatar .overlay-panel section .section-item:hover{
+  background-color: rgba($color: rgba($color: #f2f1f1, $alpha: .3), $alpha: 1);
+}
+.login-success .avatar .overlay-panel section .section-item.about-user:hover{
+  background-color: #fff;
+}
+
+.login-success .avatar .overlay-panel section .section-item .option{
+  display: flex;
+  align-items: center;
+}
+.login-success .avatar .overlay-panel section .section-item .option .icon{
+  font-size: 2rem;
+  padding-right: 16px;
+  font-weight: 400;
+}
+.login-success .avatar .overlay-panel section .section-item .option .text{
+  flex: 1;
+}
+.avatar .image__wrapper {
+  width: 40px;
+  padding-bottom: 100%;
+  position: relative;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.avatar img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.about-user{
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+}
+
+.about-user .avatar{
+  margin-right: 16px
+}
+.login-success .logout {
+  color: #000;
+  font-weight: 500;
+}
+.login-success .logout:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  /* CSS cho màn hình nhỏ hơn hoặc bằng 767px (mobile) */
+  
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* CSS cho màn hình từ 768px đến 1023px (tablet) */
+  .header-container{
+    position: unset;
+    top: unset
+  }
+}
+
+/* PC */
+@media (min-width: 1024px) {
+  /* CSS cho màn hình lớn hơn hoặc bằng 1024px (PC) */
+  
+}

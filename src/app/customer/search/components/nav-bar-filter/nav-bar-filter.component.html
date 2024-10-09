@@ -1,0 +1,10 @@
+<div class="navbar-filter__wrapper">
+    <ul class="navbar-filter__list">
+        <div class="navbar-filter__label">
+            <span>Sắp xếp</span>
+        </div>
+        <li class="navbar-filter__item" [class.selected]="tab.value === sltTabValue" *ngFor="let tab of tabs; index as idx" (click)="selectTab(tab.value)">
+            <span>{{tab.label}}</span>
+        </li>
+    </ul>
+</div>

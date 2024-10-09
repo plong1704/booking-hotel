@@ -1,0 +1,63 @@
+.search-page-container{
+    padding-top: 20px
+}
+.dialog{
+    position: fixed;
+    background-color: rgba($color: #000000, $alpha:.8);
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.dialog .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+/* Mobile */
+@media (max-width: 740px) {
+    /* CSS cho màn hình nhỏ hơn hoặc bằng 767px (mobile) */
+    .sidebar__wrapper.overlay-mobile{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba($color: #000000, $alpha:.8);
+        z-index: 100000;
+        padding: 40px;
+        user-select: none;
+        display: none;
+    }
+    .sidebar__wrapper.overlay-mobile.show{
+        display: block;
+    }
+    .sidebar__wrapper.overlay-mobile .content{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        overflow: scroll;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #fff;
+    }
+  }
+  
+  /* Tablet */
+  @media (min-width: 740px) and (max-width: 1023px) {
+    /* CSS cho màn hình từ 768px đến 1023px (tablet) */
+   
+  }
+  
+  /* PC */
+  @media (min-width: 1024px) {
+    /* CSS cho màn hình lớn hơn hoặc bằng 1024px (PC) */
+   
+  }

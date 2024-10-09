@@ -1,0 +1,74 @@
+<form class="content-photos" [formGroup]="rfPhotos">
+  <div class="card-header">
+    <div class="card-header-left">
+      <p class="content-header-one">Cho khách hàng xem những gì họ đang bỏ lỡ..</p>
+      <p>Hình ảnh rất quan trọng đối với du khách. Hãy đăng càng nhiều ảnh chất lượng cao càng tốt. Bạn có thể thêm ảnh về sau. Agoda có sẵn những bí kíp đăng tải ảnh chất lượng để thu hút nhiều đặt phòng hơn.
+      </p>
+    </div>
+    <div class="card-header-right">
+      <img src="https://img.agoda.net/images/header/ec-photos@2x.png" alt="">
+    </div>
+  </div>
+  <div class="panel-photos">
+    <div class="panel-photos-left">
+      <mat-icon>cloud_upload</mat-icon>
+
+
+        <input
+          formControlName="url"
+          class="input-file"
+          type="file" (change)="onSelect($event)" >
+
+
+    </div>
+    <div class="panel-photos-divider"></div>
+    <div class="panel-photos-right">
+     <ng-container *ngIf="show ==false">
+       <div class="panel-photos-right-item">
+         <img src="https://img.agoda.net/images/agoda-homes/photo-uploader/icon/picture-sun.svg" alt="">
+         <small>Vui lòng tải ít nhất 3 ảnh lên.</small>
+       </div>
+       <div class="panel-photos-right-item">
+         <img src="https://img.agoda.net/images/agoda-homes/photo-uploader/icon/image-file-info.svg" alt="">
+         <small>Dạng thức tệp được hỗ trợ là .jpg và .png</small>
+       </div>
+       <div class="panel-photos-right-item">
+         <img src="https://img.agoda.net/images/agoda-homes/photo-uploader/icon/expand-horizontal-4.svg" alt="">
+         <small>Kích thước ảnh tối thiểu là 800 x 600px</small>
+       </div>
+       <div class="panel-photos-right-item">
+         <img src="https://img.agoda.net/images/agoda-homes/photo-uploader/icon/download-arrow-2.svg" alt="">
+         <small>Kích thước ảnh tối đa là 10MB</small>
+       </div>
+       <div class="panel-photos-right-item">
+         <img src="https://img.agoda.net/images/agoda-homes/photo-uploader/icon/picture-stack-landscape.svg" alt="">
+         <small>Tải lên hàng loạt được giới hạn tới 100MB</small>
+       </div>
+     </ng-container>
+      <ng-container *ngIf="show==true">
+        <div class="show-img">
+          <img
+
+            [src]="url" alt=""
+           >
+        </div>
+
+      </ng-container>
+    </div>
+  </div>
+</form>
+<div class="action-photos">
+  <a>LƯU VÀ THOÁT</a>
+  <div class="action-btn">
+    <button class="btn-photos-return">
+      <a [routerLink]="['/lease/create/pricing']">TRƯỚC</a>
+    </button>
+
+    <button class="btn-photos-submit">
+      <a
+
+      (click)="submitForm()"
+      >TIẾP THEO</a>
+    </button>
+  </div>
+</div>

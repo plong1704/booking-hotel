@@ -1,0 +1,189 @@
+.room__container {
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  margin-bottom: 24px;
+  position: relative;
+}
+.room__container.min-price-border {
+  border: 2px solid #f79810;
+}
+.room__container .min-price-tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 24px;
+  background-color: #f79810;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.room__container .header {
+  background-color: #fff;
+  padding: 12px;
+}
+.room__container .header .name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.room__container .body {
+  padding: 0 12px 12px 12px;
+  background: #f8f8f8;
+}
+.col .label {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 12px 0 8px;
+}
+
+.room-type .image__wrapper {
+  width: 100%;
+  padding-bottom: 66.66666%;
+  position: relative;
+}
+.room-type .image__wrapper.ls__item {
+  width: 100%;
+  padding-bottom: 33.333333%;
+  position: relative;
+}
+.room-type .image__wrapper img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.room-type .image__wrapper.ls__item:nth-child(1) {
+  margin-right: 2.5px;
+}
+.room-type  .image__wrapper.ls__item:nth-child(2) {
+  margin-left: 2.5px;
+}
+
+.body .content-col {
+  border-right: 1px solid #ccc;
+  padding: 0 12px;
+  height: calc(100% - 40px);
+  background-color: #fff;
+}
+.body .capacity {
+}
+.body .capacity .capacity__list {
+  padding: 12px 0;
+}
+.body .capacity__item {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #808080;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.body .capacity__item span {
+  margin: 0 15px;
+}
+.body .capacity__item i {
+  font-size: 2.4rem;
+}
+.body .room__info {
+}
+.body .room__info .benefit__wrapper {
+  padding: 12px 0;
+}
+.body .room__info .benefits {
+  padding-left: 12px;
+}
+.body .room__info .benefit__item {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.body .room__info .benefit__item i {
+  background: #fff;
+  color: #29871c;
+  margin-right: 5px;
+}
+.body .payment {
+  background: #f4f8fd;
+}
+.body .payment .payment__item {
+  margin-bottom: 12px;
+}
+.body .price__info {
+  padding: 0;
+  border: unset;
+}
+.price__wrapper {
+  text-align: end;
+  padding: 12px;
+}
+.price__wrapper .button__wrapper {
+  margin-bottom: 12px;
+}
+
+.price__wrapper .origin-price__wrapper {
+  position: relative;
+  color: #737373;
+  font-weight: 500;
+  display: inline-block;
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.price__wrapper .origin-price__wrapper::before {
+  border-top: 2px solid;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 100%;
+  border-color: #e12d2d;
+  transform: rotate(-10deg);
+}
+
+.price__wrapper .rental-price__wrapper {
+  font-size: 2.2rem;
+  display: inline-block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #e12d2d;
+}
+.voucher__wrapper {
+}
+.voucher-tag {
+  background: rgb(40, 135, 28);
+  color: #fff;
+  width: 150px;
+  min-width: 150px;
+  text-align: center;
+  padding: 6.5px 18px;
+  position: relative;
+  border-right: 1px dashed #fff;
+}
+.voucher-tag:after {
+  width: 0;
+  height: 0;
+  border: 12.5px solid transparent;
+  position: absolute;
+  content: "";
+  border-top-color: rgb(40, 135, 28);
+  right: -26px;
+  top: 0px;
+  border-left-color: rgb(40, 135, 28);
+}
+.voucher-tag:before {
+  width: 0;
+  height: 0;
+  border: 13px solid transparent;
+  position: absolute;
+  content: "";
+  border-bottom-color: rgb(40, 135, 28);
+  right: -25px;
+  top: -1px;
+}

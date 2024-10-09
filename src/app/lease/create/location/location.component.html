@@ -1,0 +1,48 @@
+<form class="content-location"  [formGroup]="rfLocation">
+  <div class="card-header">
+    <div class="card-header-left">
+      <p class="content-header-one">Xác định vị trí chỗ ở của bạn trên bản đồ.</p>
+      <p>Xác định vị trí chỗ ở của bạn trên bản đồ.</p>
+    </div>
+    <div class="card-header-right">
+      <img src="https://img.agoda.net/images/header/ec-location@2x.png" alt="">
+    </div>
+  </div>
+  <div class="card-header">
+    <div class="card-header-left-two">
+      <p class="content-header-two">Vị trí</p>
+      <p>Đây có phải là vị trí chính xác của chỗ nghỉ không? Nếu không thì hãy kéo cái ghim đến vị trí chính xác.</p>
+    </div>
+
+  </div>
+  <div class="panel-location">
+    <div class="panel-location-form">
+      <div class="panel-location-input">
+        <p>Địa chỉ</p>
+        <input type="text" placeholder="Điền vào đây" formControlName="street">
+      </div>
+      <div class="panel-location-input">
+        <p>Tên tòa nhà, tầng và căn hộ</p>
+        <input type="text" placeholder="Điền vào đây" >
+      </div>
+
+
+
+    </div>
+  </div>
+</form>
+<div class="action-location">
+  <a href="#">LƯU VÀ THOÁT</a>
+  <div class="action-btn">
+    <button class="btn-location-return">
+      <a [routerLink]="['/lease/create/basic']">TRƯỚC</a>
+
+    </button>
+
+    <button class="btn-location-submit">
+      <a [routerLink]="['/lease/create/description']"
+      (click)="submitForm()"
+      >TIẾP THEO</a>
+    </button>
+  </div>
+</div>

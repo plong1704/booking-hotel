@@ -1,0 +1,31 @@
+<div class="spinner__wrapper" *ngIf="(progressSpinnerService.isActive$ | async)">
+  <mat-spinner></mat-spinner>
+</div>
+<ng-container
+  *ngIf="searchedProductResponse$ | async as searchedProductResponse"
+>
+  <div class="product-list__wrapper">
+    <ul class="product__list" *ngIf="searchedProductResponse; else none">
+      <ng-container *ngIf="searchedProductResponse.searchedProduct">
+        <app-product-item
+          [searchedProduct]="searchedProductResponse.searchedProduct"
+          [isSearchedProduct]="true"
+        >
+        </app-product-item>
+      </ng-container>
+      <ng-container
+        *ngFor="
+          let relativeSearchedProduct of searchedProductResponse.relativeSearchedProducts
+        "
+      >
+        <app-product-item [searchedProduct]="relativeSearchedProduct">
+        </app-product-item>
+      </ng-container>
+    </ul>
+  </div>
+</ng-container>
+<ng-template #none>
+  <div>
+    <div>Không có sản phẩm cho kết quả này</div>
+  </div>
+</ng-template>

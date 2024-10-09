@@ -1,0 +1,123 @@
+<div class="room__container" [class.min-price-border]="isMinPrice">
+  <div class="header">
+    <div class="name">
+      {{ room.name }}
+    </div>
+  </div>
+  <div class="body">
+    <div class="grid">
+      <div class="row m-gutters">
+        <div class="col l-3 m-12 c-12">
+          <div class="label">Loại phòng</div>
+          <div class="room-type">
+            <div class="image__container">
+                <div class="image__wrapper thumb">
+                  <img [src]="thumbImage.url" alt="" />
+                </div>
+              <div class="d-flex-bh mr-t-5">
+                <ng-container *ngFor="let image of filtedImages; index as idx">
+                  <div class="image__wrapper ls__item" *ngIf="idx === 0 || idx === 1">
+                    <img [src]="image.url" alt="" />
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l-9 m-12 c-12">
+          <div class="row h-fit no-gutters right" style="overflow: hidden">
+            <div class="col l-4 m-4 c-6">
+              <div class="label">Giá này đã gồm</div>
+              <div class="room__info content-col">
+                <div class="benefit__wrapper">
+                  <h5>Lợi ích</h5>
+                  <div class="benefits">
+                    <ng-container *ngFor="let b of room.benefits.slice(0, 3)">
+                      <div class="benefit__item">
+                        <i class="fa-solid fa-check"></i>
+                        <span>{{ b.name }}</span>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col l-2 m-2 c-6">
+              <div class="label">Sức chứa</div>
+              <div class="capacity content-col">
+                <div class="capacity__list">
+                  <div class="capacity__item">
+                    {{ room.maxAdults }} <span>x</span>
+                    <i class="fa-solid fa-child"></i>
+                  </div>
+                  <div class="capacity__item" *ngIf="room.maxChildren > 0">
+                    {{ room.maxChildren }} <span>x</span>
+                    <i class="fa-solid fa-child-reaching"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col l-3 m-3 c-6">
+              <div class="label">Thanh toán và huỷ bỏ</div>
+              <div class="payment content-col">
+                <div class="payment__item">
+                  <strong class="fs-12" style="display: block;">Thanh toán</strong>
+                  <mat-radio-group aria-label="Select an option" [(ngModel)]="paymentMethod">
+                    <mat-radio-button value="online">Thanh toán online</mat-radio-button>
+                    <div class="space"></div>
+                    <mat-radio-button value="direct">Thanh toán tại khách sạn</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+            </div>
+            <div class="col l-3 m-3 c-6">
+              <div class="label">Giá phòng/đêm</div>
+              <div class="price__info content-col">
+                <div class="voucher__wrapper" *ngIf="room.discount as discount">
+                  <h6 class="voucher-tag">
+                    {{ discount.name }} {{ discount.percent }}%
+                  </h6>
+                </div>
+                <div class="price__wrapper">
+                  <div class="price__item">
+                    <div class="origin-price__wrapper">
+                      <span>{{ room.originPrice | currency : "VND" }}</span>
+                    </div>
+                  </div>
+                  <span class="fs-12 mr-b-5">Giá mỗi đêm chỉ từ</span>
+                  <div class="price__item">
+                    <div class="rental-price__wrapper">
+                      <span>{{ room.rentalPrice | currency : "VND" }}</span>
+                    </div>
+                  </div>
+                  <div class="space m"></div>
+                  <div class="button__wrapper">
+                    <button
+                      class="w-fit"
+                      mat-raised-button
+                      color="primary"
+                      (click)="onProceedToCheckout()"
+                    >
+                      Đặt ngay
+                    </button>
+                  </div>
+                  <div class="button__wrapper">
+                    <button
+                      class="w-fit"
+                      mat-stroked-button
+                      color="primary"
+                      (click)="onAddToCart()"
+                    >
+                      Thêm vào xe đẩy hàng
+                    </button>
+                  </div>
+                  <!-- <div class="free-cancellation" *ngIf="searchedProduct.isFreeCancellation">+ Miễn phí huỷ phòng</div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

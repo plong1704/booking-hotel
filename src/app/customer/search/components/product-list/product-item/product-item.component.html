@@ -1,0 +1,178 @@
+<a class="product-item__wrapper grid" (click)="seletectProductItem(searchedProduct)" >
+  <!-- <a [href]="url">aaaa</a> -->
+  <div class="product__item" [class.searched]="isSearchedProduct">
+    <div class="product__item__header"></div>
+    <div class="product__item__body">
+      <div class="row no-gutters">
+        <div class="col l-4 m-12 c-12">
+          <div class="left__wrapper">
+            <div class="product-image__wrapper">
+              <div class="product-image__thumbnail" >
+                <img 
+                  [src]="thumbImage? thumbImage.url: null"
+                  alt=""
+                />
+              </div>
+              <div class="product-image__review-list">
+                <div class="row no-gutters">
+                  <div
+                    class="col l-3 m-3 c-3 product-image__review-item"
+                    *ngFor="let image of hotelImages.slice(0,4); last as lastIdx; index as idx"
+                    (mouseenter)="hoverImage(image)"
+                    (mouseleave)="isHoverReviewItem = false"
+                    (click)="openLiveshowImage($event, hotelImages, idx)"
+                  >
+                    <div class="review-item__img-wrapper">
+                      <img
+                        [src]="image? image.url: null"
+                        alt=""
+                      />
+                    </div>
+                    <div class="overlay" *ngIf="lastIdx">
+                      <span>xem tất cả</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="image-zoom" *ngIf="isHoverReviewItem">
+                  <div class="image__wrapper">
+                    <img
+                      [src]="hoveredImage.url"
+                      alt=""
+                    />
+                    <div class="description__wrapper">
+                      <span>Bed room</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col l-8 m-12 c-12">
+          <div class="row">
+            <div class="col l-7 m-8 c-8">
+              <div class="center__wrapper">
+                <div class="product-info">
+                  <div class="product-info__header">
+                    <h3 class="product__name">
+                      {{ searchedProduct.name }}
+                    </h3>
+                    <div class="star-rating__wrapper">
+                      <app-start-rating [starRating]="searchedProduct.starRating"></app-start-rating>
+                    </div>
+                    <div class="address__wrapper">
+                      <app-location-maker-svg
+                        class="mr-r-5"
+                      ></app-location-maker-svg>
+                      <span
+                        >{{ searchedProduct.address.district }},
+                        {{ searchedProduct.address.province }},
+                      </span>
+                    </div>
+                  </div>
+                  <div class="product-info__body">
+                    <div class="benefits__group">
+                      <ng-container
+                        *ngFor="
+                          let benefit of searchedProduct.benefits.slice(0, 3);
+                          index as idx
+                        "
+                      >
+                        <div class="benefit__item" *ngIf="idx < 2; else lastIdx">
+                          <span>{{ benefit }}</span>
+                        </div>
+                        <ng-template #lastIdx>
+                          <div class="benefit__item">
+                            <span>+{{ searchedProduct.benefits.length - 2 }}</span>
+                          </div>
+                        </ng-template>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <div class="product-info__footer">
+                    <div
+                      class="vip-member__wrapper"
+                      *ngIf="searchedProduct.isDeals"
+                    >
+                      <div class="vip-member">
+                        <div class="left">
+                          <app-star-svg [fillColor]="'#fff'"></app-star-svg>
+                          <span>VIP</span>
+                        </div>
+                        <div class="right">
+                          <span>Spring Deals</span>
+                        </div>
+                        <div class="right-line"></div>
+                      </div>
+                    </div>
+                    <div class="online-payment__wrapper">
+                      <app-credit-card class="mr-r-5"></app-credit-card>
+                      Thanh toán online
+                    </div>
+                    <div class="discount__wrapper">
+                      <app-tag-svg class="mr-r-5"></app-tag-svg>
+                      Mã giảm giá {{ searchedProduct.discount.name }} - {{ searchedProduct.discount.percent }}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>  
+            <div class="col l-5 m-4 c-4">
+              <div class="right__wrapper">
+                <div class="average-rating__wrapper">
+                  <div class="average-rating__points-wrapper">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 24
+                                        24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="transform: none"
+                    >
+                      <path
+                        d="M23.25
+                                            12C23.25 5.787 18.213.75 12 .75S.75
+                                            5.787.75 12v11.25H12c6.213 0 11.25-5.037
+                                            11.25-11.25z"
+                        fill="var(--primary-color)"
+                      ></path>
+                    </svg>
+                    <div class="points__wrapper">
+                      <p>{{ searchedProduct.averageRating.points }}</p>
+                    </div>
+                  </div>
+                  <div class="average-rating__content">
+                    <p>{{ searchedProduct.averageRating.name }}</p>
+                    <span
+                      >{{ searchedProduct.averageRating.reviews }} lượt đánh
+                      giá</span
+                    >
+                  </div>
+                </div>
+                <div class="price__wrapper">
+                  <div class="price__item">
+                    <div class="origin-price__wrapper">
+                      <span>{{
+                        searchedProduct.originalPrice | currency : "VND"
+                      }}</span>
+                    </div>
+                  </div>
+                  <span class="fs-12 mr-b-5">Thuê phòng ngay, giá chỉ từ</span>
+                  <div class="price__item">
+                    <div class="rental-price__wrapper">
+                      <span>{{
+                        searchedProduct.rentalPrice | currency : "VND"
+                      }}</span>
+                    </div>
+                  </div>
+                  <div class="free-cancellation" *ngIf="searchedProduct.isFreeCancellation">+ Miễn phí huỷ phòng</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

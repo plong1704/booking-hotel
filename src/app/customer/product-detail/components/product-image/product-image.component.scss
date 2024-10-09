@@ -1,0 +1,41 @@
+.pi__container {
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+.image__wrapper {
+  width: 100%;
+  position: relative;
+  padding-bottom: 66.6666%;
+}
+.image__wrapper:nth-child(1){
+  margin-bottom: 8px;
+}
+.image__wrapper.thumb{
+  padding-bottom: 88.8888%;
+}
+
+
+.image__wrapper img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.image__group {
+  margin-left: 8px;
+}
+// .image__group img{
+//     width: 100%;
+//     height: 140px;
+//     object-fit: cover;
+// }
+.image__group img:nth-child(2) {
+  margin-top: 8px;
+}
+
+::ng-deep mat-dialog-container{
+  padding: 0 !important
+}

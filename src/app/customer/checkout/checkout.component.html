@@ -1,0 +1,246 @@
+<div class="d-flex-bh flex-wrap-bh checkout-header bx__shadow">
+    <div class="home-img">
+        <img src="https://cdn6.agoda.net/images/kite-js/logo/agoda/color-default.svg" alt="">
+    </div>
+    <div class="process-bar">
+        <mat-stepper linear #stepper class="w-fit" [tabIndex]="0">
+            <mat-step [editable]="false" [completed]="false">
+                <ng-template matStepLabel>
+                    <span class="primary-text">
+                        Thông tin khách hàng
+                    </span>
+                </ng-template>
+            </mat-step>
+            <mat-step [editable]="false" [completed]="false">
+                <ng-template matStepLabel>Chi tiết thanh toán</ng-template>
+            </mat-step>
+            <mat-step [editable]="false" [completed]="false">
+                <ng-template matStepLabel>Đã xác nhận đặt phòng</ng-template>
+            </mat-step>
+        </mat-stepper>
+    </div>
+</div>
+
+<app-loading-overlay *ngIf="showWaitingOverlay"></app-loading-overlay>
+
+<div class="d-flex-bh flex-wrap-bh checkout-information" [formGroup]="customerInformationFormGroup">
+    <div class="checkout-column">
+        <div class="checkout-box bx__shadow">
+            <p class="customer-information__title">Thông tin khách hàng</p>
+            <div class="divider-line divider-cart"></div>
+            <p class="label-warning">Xác nhận của quý khách sẽ được gửi đến đây</p>
+            <div class="d-flex-bh flex-wrap-bh details-groups">
+                <div class="input-group">
+                    <label for="family_name">Tên</label>
+                    <div>
+                        <input type="text" id="family_name" placeholder="Tên" formControlName="family_name">
+                        <mat-error *ngIf="customerInformationFormGroup.get('family_name')?.errors">Vui
+                            lòng nhập
+                            tên</mat-error>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="surname">Họ (vd: Nguyễn)</label>
+                    <div>
+                        <input type="text" id="surname" placeholder="Họ" formControlName="surname">
+                        <mat-error *ngIf="customerInformationFormGroup.get('surname')?.errors">Vui lòng
+                            nhập
+                            họ ( vd : Nguyễn )</mat-error>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email ID</label>
+                    <div>
+                        <input type="text" id="email" placeholder="Email" formControlName="email">
+                        <mat-error *ngIf="customerInformationFormGroup.get('email')?.errors">Vui lòng
+                            nhập
+                            email hợp lệ</mat-error>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Số di động</label>
+                    <div>
+                        <input type="text" id="phone" placeholder="Số di động" formControlName="phone" maxlength="10">
+                        <mat-error *ngIf="customerInformationFormGroup.get('phone')?.errors">Vui lòng nhập
+                            số điện thoại hợp lệ</mat-error>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="checkout-box bx__shadow-1">
+            <p class="customer-information__title">Thông tin khách hàng</p>
+            <div class="divider-line divider-cart"></div>
+            <div class="d-flex-bh flex-wrap-bh details-groups">
+                <div class="input-group">
+                    <label for="fullname">Tên</label>
+                    <div>
+                        <input type="text" id="fullname" placeholder="Tên" formControlName="fullname">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="surname">Họ (vd: Nguyễn)</label>
+                    <div>
+                        <input type="text" id="surname" placeholder="Họ" formControlName="surname">
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="d-flex-bh flex-wrap-bh justify-content-end process-payment">
+            <button class="btn btn-primary bx__shadow" (click)="onProceedToPayment()"
+                [disabled]="this.customerInformationFormGroup.invalid">Tiến hành thanh toán</button>
+        </div>
+    </div>
+    <div class="checkout-column order-summary bx__shadow">
+        <div class="short-order__title">
+            <p>Tóm tắt Đặt phòng</p>
+        </div>
+        <div class="items-checkout" *ngFor="let item of chosenItems;index as ind">
+            <div class="order-item">
+                <p class="item-type">
+                    <app-hotel-home-svg></app-hotel-home-svg>
+                    {{item.roomType}}
+                    <span class="text-secondary">
+                        ({{item.address}})
+                    </span>
+                </p>
+                <div class="d-flex-bh flex-wrap-bh item-summary__details">
+                    <div class="item-img">
+                        <img [src]="BASE_IMG+item.bannerImage" alt="image" width="80px">
+                    </div>
+                    <div class="item-information">
+                        <p class="fw-bold">{{item.hotel.name}}</p>
+                        <div>
+                            <i class="fa-solid fa-star cl-star item-rating__icon"
+                                *ngFor="let item of [].constructor(getRatingStar(item.hotel.averagePoints))"></i>
+                            <i class="fa-solid fa-star-half-stroke cl-star item-rating__icon"
+                                *ngFor="let item of [].constructor(5-getRatingStar(item.hotel.averagePoints))"></i>
+                        </div>
+                        <div class="item-rating">
+                            <span class="rating-svg">
+                                <svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    class="SvgIconstyled__SvgIconStyled-sc-1i6f60b-0 hOHgEZ Box-sc-kv6pi1-0 jlKhZq"
+                                    style="transform: scale(-3,3);fill: rgb(62, 108, 234);">
+                                    <path
+                                        d="M1.499 2.553h20.32a2 2 0 0 1 2 2v14.983a2 2 0 0 1-2 2H4.829a2 2 0 0 1-2-2V8.333L.298 4.951a1.5 1.5 0 0 1 1.2-2.398z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <span class="rating-point">{{item.hotel.averagePoints}}</span>
+                            <span class="rating-title fw-bold" *ngIf="item.hotel.averagePoints>9">Trên cả tuyệt vời
+                                <p class="rating-quantity">{{item.totalReviews}} nhận xét</p>
+                            </span>
+                            <span class="rating-title fw-bold" *ngIf="item.hotel.averagePoints<=9"
+                                style="margin-left:10px">Tuyệt vời
+                                <p class="rating-quantity">{{item.totalReviews}} nhận xét</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-summary__information">
+                    <p>
+                        <svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            class="SvgIconstyled__SvgIconStyled-sc-1i6f60b-0 ibyDZc">
+                            <path
+                                d="M17.483 1.005a.5.5 0 0 1 .5.5v.551h3.596a1.5 1.5 0 0 1 1.5 1.5v17.947a1.5 1.5 0 0 1-1.5 1.5H2.497a1.5 1.5 0 0 1-1.5-1.5V3.556a1.5 1.5 0 0 1 1.5-1.5h3.485v-.55a.5.5 0 1 1 1 0v.55h10v-.55a.5.5 0 0 1 .5-.5zm4.596 6.997H1.997v13.501a.5.5 0 0 0 .5.5H21.58a.5.5 0 0 0 .5-.5v-13.5zM7 15.5a.5.5 0 0 1 .5.5v2.838a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V16a.5.5 0 0 1 .5-.5h3zm6 0a.5.5 0 0 1 .5.5v2.838a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V16a.5.5 0 0 1 .5-.5h3zm6 0a.5.5 0 0 1 .5.5v2.838a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V16a.5.5 0 0 1 .5-.5h3zm-12.5 1h-2v1.838h2V16.5zm6 0h-2v1.838h2V16.5zm6 0h-2v1.838h2V16.5zM7 9.5a.5.5 0 0 1 .5.5v2.838a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .5-.5h3zm6 0a.5.5 0 0 1 .5.5v2.838a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .5-.5h3zm6 0a.5.5 0 0 1 .5.5v2.838a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .5-.5h3zm-12.5 1h-2v1.838h2V10.5zm6 0h-2v1.838h2V10.5zm6 0h-2v1.838h2V10.5zM5.982 3.056H2.497a.5.5 0 0 0-.5.5v3.446H22.08V3.556a.5.5 0 0 0-.5-.5h-3.597v.428a.5.5 0 1 1-1 0v-.428h-10v.428a.5.5 0 1 1-1 0v-.428z">
+                            </path>
+                        </svg>
+                        {{getDateInPlain(item.fromDate)}} - {{getDateInPlain(item.toDate)}} |
+                        {{getNightLabel(item.fromDate,item.toDate)}}
+                    </p>
+                    <p>
+                        <svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                            class="SvgIconstyled__SvgIconStyled-sc-1i6f60b-0 ibyDZc">
+                            <path
+                                d="M3.523 3.056a1.5 1.5 0 0 1 1.5 1.497l.02 8.503h16.536a1.5 1.5 0 0 1 1.5 1.5v5.947a1.5 1.5 0 0 1-1.5 1.5h-2.07a.5.5 0 0 1-.5-.5v-3.5H5.043v3.5a.5.5 0 0 1-.5.5H2.497a1.5 1.5 0 0 1-1.5-1.5V4.556a1.5 1.5 0 0 1 1.5-1.5h1.026zm0 1H2.497a.5.5 0 0 0-.5.5v15.947a.5.5 0 0 0 .5.5h1.546v-3.5a.5.5 0 0 1 .5-.5H19.51a.5.5 0 0 1 .5.5v3.5h1.57a.5.5 0 0 0 .5-.5v-5.947a.5.5 0 0 0-.5-.5H4.543a.5.5 0 0 1-.5-.498l-.02-9.003a.5.5 0 0 0-.5-.499zM16.598 6.5a5.5 5.5 0 0 1 4.52 2.367l.42.607a1.5 1.5 0 0 1-1.232 2.354H13a1.5 1.5 0 0 1-1.5-1.5V8A1.5 1.5 0 0 1 13 6.5h3.598zm-8.042 0a2.556 2.556 0 1 1 0 5.112 2.556 2.556 0 0 1 0-5.112zm8.042 1H13a.5.5 0 0 0-.5.5v2.328a.5.5 0 0 0 .5.5h7.306a.5.5 0 0 0 .41-.784l-.42-.607A4.5 4.5 0 0 0 16.598 7.5zm-8.042 0a1.556 1.556 0 1 0 0 3.112 1.556 1.556 0 0 0 0-3.112z">
+                            </path>
+                        </svg>
+                        1 x {{item.roomType}}
+                    </p>
+                    <p>
+                        <svg width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"
+                            class="SvgIconstyled__SvgIconStyled-sc-1i6f60b-0 ibyDZc">
+                            <defs>
+                                <path id="mmb-account_24px-a"
+                                    d="M12 10.5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm9.989 13a.5.5 0 0 1-.5.5H2.6a.5.5 0 0 1-.5-.5c0-5.793 4.446-10.5 9.944-10.5 5.5 0 9.945 4.707 9.945 10.5zM12.044 13c-4.775 0-8.687 3.98-8.932 9h17.865c-.245-5.02-4.157-9-8.933-9z">
+                                </path>
+                            </defs>
+                            <use xlink:href="#mmb-account_24px-a"></use>
+                        </svg>
+                        1 phòng, {{item.adult}} Người lớn, {{item.child}} Trẻ em
+                    </p>
+                </div>
+            </div>
+            <div class="item-amenities" *ngIf="isShowAmenitiesItem(ind)">
+                <div class="divider-line"></div>
+                <div class="amenity-check" *ngFor="let amenity of item.benefits">
+                    <div class="amenity-icon">
+                        <wifi-svg *ngIf="amenity.name==='Wifi'"></wifi-svg>
+                        <check-svg *ngIf="amenity.name!=='Wifi'"></check-svg>
+                    </div>
+                    <div class="amenity-name">
+                        <p class="text-check">{{amenity.name}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="toggle-more text-end">
+                <p *ngIf="!isShowAmenitiesItem(ind)" (click)="toggleShowAmenitiesItem(ind)">Chi tiết <svg width="1em"
+                        height="1em" style="fill:var(--primary-color)" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" class="SvgIconstyled__SvgIconStyled-sc-1i6f60b-0 olbde sc-pQEbo cjeVtN">
+                        <path
+                            d="M3.06 6.839l8.84 8.839 8.838-8.84A1.5 1.5 0 1 1 22.86 8.96l-9.9 9.9a1.5 1.5 0 0 1-2.121 0l-9.9-9.9A1.5 1.5 0 0 1 3.061 6.84z">
+                        </path>
+                    </svg></p>
+                <p *ngIf="isShowAmenitiesItem(ind)" (click)="toggleShowAmenitiesItem(ind)">Ẩn <svg width="1em"
+                        height="1em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                        style="transform:rotate(180deg);fill:var(--primary-color)">
+                        <path
+                            d="M3.06 6.839l8.84 8.839 8.838-8.84A1.5 1.5 0 1 1 22.86 8.96l-9.9 9.9a1.5 1.5 0 0 1-2.121 0l-9.9-9.9A1.5 1.5 0 0 1 3.061 6.84z">
+                        </path>
+                    </svg></p>
+            </div>
+            <div class="divider-line"></div>
+        </div>
+    </div>
+    <div class="checkout-price">
+        <div class="details-price__container">
+            <p class="item-price__title">Chi Tiết Giá</p>
+            <div class="d-flex-bh flex-wrap-bh details-price">
+                <!-- <div class="price-column__first">
+                    <p class="text-check">Tiết kiệm gói</p>
+                </div>
+                <div class="price-column__second">
+                    <p class="text-end text-check">- {{formatPrice(getTotalPrice()*10/100)}}</p>
+                </div>
+                <div class="divider-line w-fit"></div> -->
+
+                <div class="price-column__first">
+                    <p>Tổng cộng thuế và phí</p>
+                </div>
+                <div class="price-column__second">
+                    <p class="text-end">{{formatPrice(getTotalPrice())}}</p>
+                </div>
+                <div class="divider-line w-fit"></div>
+
+                <div class="price-column__first">
+                    <p>Tổng quý khách trả</p>
+                </div>
+                <div class="price-column__second">
+                    <p class="text-end">{{formatPrice(getTotalPrice())}}</p>
+                </div>
+
+                <div class="d-flex-bh w-fit" *ngFor="let item of chosenItems">
+                    <div class="price-column__first">
+                        <p class="mg-0">Tổng phải trả khi nhận phòng</p>
+                        <p class="item-name">{{item.hotel.name}}</p>
+                    </div>
+                    <div class="price-column__second">
+                        <p class="text-end">
+                            {{getPriceByNights(item.fromDate,item.toDate,item.room.rentalPrice,item.discountPercent)}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<ul class="sidebar-filter__group">
+    <div class="sidebar-filter__inner">
+        <div class="budget__group">
+            <h4>Giá mỗi đêm</h4>
+            <div class="rang-slider">
+                <div class="middle">
+                    <div class="multi-range-slider">
+                        <input #thumbLeftInput type="range" id="input-left" class="range2" [min]="minFinalPrice"
+                            [max]="maxFinalPrice" [(ngModel)]="priceFrom" (ngModelChange)="changeLeftSlider('change')">
+                        <input #thumbRightInput type="range" id="input-right" class="range2" [min]="minFinalPrice"
+                            [max]="maxFinalPrice" [(ngModel)]="priceTo" (ngModelChange)="changeRightSlider('change')">
+                        <div class="slider">
+                            <div class="track"></div>
+                            <div class="range" #range></div>
+                            <div class="thumb left" #thumbLeft>
+                            </div>
+                            <div class="thumb right" #thumbRight>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="multi_range">
+                        <div class="min" >
+                            <span>Tối thiểu</span>
+                            <div class="input__wrapper">
+                                <span>₫</span>
+                                <input disabled type="text" [(ngModel)]="priceFrom">
+                            </div>
+                        </div>
+                        <div class="connect-line"></div>
+                        <div class="max">
+                            <span>Tối đa</span>
+                            <div class="input__wrapper">
+                                <span>₫</span>
+                                <input disabled type="text" [(ngModel)]="priceTo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="feild-builder__wrapper">
+            <div id="my-filter">
+                <div class="d-flex-bh align-items-center-bh justify-content-between-bh" style="margin-bottom: 10px">
+                    <h5 style="margin: 0"> {{selectedField.label}}</h5>
+                    <a  *ngIf="selectedField.selectedCheckOptions.length > 0" (click)="clearSelectedOption()">XOÁ</a>
+                </div>
+                <section>
+                    <ng-container *ngFor="let selectedCheckOption of selectedField.selectedCheckOptions; index as i">
+                        <p>
+                            <mat-checkbox
+                                [(ngModel)]="selectedCheckOption.checked"
+                                [color] = "'primary'"
+                                (change)="changeSelectedOption(selectedCheckOption)"
+                                >
+                                <span style="font-size: 1.2rem">
+                                    {{selectedCheckOption.label}}
+                                </span>
+                            </mat-checkbox>
+                        </p>
+                    </ng-container>
+                </section>
+            </div>
+        </div>
+        <div [formGroup]="filterFormGroup">
+            <ng-container *ngFor="let filterField of filterFields">
+                <div class="feild-builder__wrapper">
+                    <app-field-builder [field]="filterField" [form]="filterFormGroup" [selectedField]="selectedField"></app-field-builder>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</ul>
